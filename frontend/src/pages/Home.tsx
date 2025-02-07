@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import Button from "../components/Button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
 import { useAuth } from "../contexts/AuthContext";
 import { jwtDecode } from "jwt-decode";
@@ -33,25 +33,6 @@ function Home() {
     setIsLoggedIn(false);
     setMessage("Google Login failed! Please try again.");
   };
-
-  useEffect(() => {
-    const credentials = localStorage.getItem("token");
-    if (credentials) {
-      setIsLoggedIn(true);
-      // console.log(credentials);
-      if (credentials) {
-        localStorage.setItem("token", credentials);
-        const userDetails: any = jwtDecode(credentials);
-        setUserDetails({
-          name: userDetails.name,
-          email: userDetails.email,
-          profilePic: userDetails.picture,
-          exp: userDetails.exp,
-          token: credentials,
-        });
-      }
-    }
-  }, []);
 
   return (
     <>

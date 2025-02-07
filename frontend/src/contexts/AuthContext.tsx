@@ -12,7 +12,7 @@ interface AuthContextTypes {
   isLoggedIn: boolean;
   setIsLoggedIn: (state: boolean) => void;
   userDetails: userDetailsType | null;
-  setUserDetails: (details: userDetailsType) => void;
+  setUserDetails: (details: userDetailsType | null) => void;
 }
 const AuthContext = createContext<AuthContextTypes | undefined>(undefined);
 

@@ -51,6 +51,8 @@ const Navbar = () => {
           />
         </div>
       );
+    } else if (!isLoggedIn) {
+      setProfilePic(<User size={30} />);
     }
   }, [isLoggedIn]);
 
