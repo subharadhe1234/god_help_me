@@ -1,8 +1,38 @@
 import { Download } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 function Profile() {
-  const { isLoggedIn, setIsLoggedIn, userDetails, setUserDetails } = useAuth();
+  const { isLoggedIn, setIsLoggedIn, setUserDetails, userDetails } = useAuth();
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLoginSuccess = (response: CredentialResponse) => {
+    console.log("Google login successful: ", response);
+    if (response.credential) {
+      localStorage.setItem("token", response.credential);
+      const userDetails: any = jwtDecode(response.credential);
+      setUserDetails({
+        name: userDetails.name,
+        email: userDetails.email,
+        profilePic: userDetails.picture,
+        exp: userDetails.exp,
+        token: response.credential,
+      });
+    }
+    setIsLoggedIn(true);
+    console.log(response);
+    setMessage("Successfully logged in 🚀");
+  };
+
+  const handleGoogleLoginFailure = () => {
+    console.log("Google Login Failed!");
+    setIsLoggedIn(false);
+    setMessage("Google Login failed! Please try again.");
+  };
   const data = {
     history: [
       {
@@ -28,14 +58,31 @@ function Profile() {
   // };
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserDetails(null);
-    if (localStorage.getItem("token")) {
+    setIsLoading(true);
+
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("resolved");
+      }, 500);
+    }).then(() => {
+      setIsLoading(false);
+      setIsLoggedIn(false);
+      setUserDetails(null);
       localStorage.removeItem("token");
-    }
+    });
   };
 
-  if (!isLoggedIn)
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+        <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center gap-4 w-full max-w-md text-center">
+          <h1 className="text-2xl font-bold text-gray-900">Logging Out...</h1>
+          <p className="text-gray-600">Please wait while we log you out.</p>
+        </div>
+      </div>
+    );
+  }
+  else if (!isLoggedIn)
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
         <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center gap-4 w-full max-w-md text-center">
@@ -45,9 +92,12 @@ function Profile() {
           <p className="text-gray-600">
             Access to your profile is restricted. Please log in to continue.
           </p>
-          <button className="px-5 py-2 mt-2 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition-all">
-            Login Now
-          </button>
+          <div className="mt-2  text-white font-medium rounded-lg shadow-md transition-all">
+            <GoogleLogin
+              onSuccess={handleLoginSuccess}
+              onError={handleGoogleLoginFailure}
+            />
+          </div>
         </div>
       </div>
     );
