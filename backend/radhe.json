@@ -1,0 +1,41 @@
+{
+  "medicines": [
+    {
+      "name": "Betaloc",
+      "dosage": "100mg",
+      "frequency": "1 tab BID",
+      "duration": null,
+      "route": "oral",
+      "purpose": "beta-blocker",
+      "special_instructions": null
+    },
+    {
+      "name": "Dorzolamidum",
+      "dosage": "10mg",
+      "frequency": "1 tab BID",
+      "duration": null,
+      "route": "oral",
+      "purpose": "diuretic",
+      "special_instructions": null
+    },
+    {
+      "name": "Cimetidine",
+      "dosage": "50mg",
+      "frequency": "2 tabs TID",
+      "duration": null,
+      "route": "oral",
+      "purpose": "antacid",
+      "special_instructions": null
+    },
+    {
+      "name": "Oxprelol",
+      "dosage": "50mg",
+      "frequency": "1 tab QD",
+      "duration": null,
+      "route": "oral",
+      "purpose": "pain relief",
+      "special_instructions": null
+    }
+  ],
+  "general_instructions": null
+}
