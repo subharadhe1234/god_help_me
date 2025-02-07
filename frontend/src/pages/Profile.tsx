@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Download } from 'lucide-react';
+import { InfinitySpin } from "react-loader-spinner";
 
 function Profile() {
   const [loggedIn, setLoggedIn] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const data = {
     "history": [
       {
@@ -66,42 +68,55 @@ function Profile() {
           </button>
         </div>
       </div>
+      <h1 className="mt-10 font-black text-3xl">History</h1>
       {/* History */}
-      <div className="mt-6">
-        <h1 className="font-black text-3xl">History</h1>
-        <div className="grid grid-cols-1 gap-3 mt-10">
-          {data.history.map((medicine: any, index: any) => (
-            <div
-              key={index}
-              className="bg-white p-4 rounded-xl shadow-lg flex items-center gap-4"
-            >
-
-              <img
-                src={medicine.img}
-                alt="Prescription"
-                className="w-24 h-24 object-cover rounded-lg border"
-              />
-
-              {/* Prescription Details */}
-              <div className="flex-1">
-                <h2 className="text-lg font-bold text-gray-900">Prescription</h2>
-                <p className="text-gray-600 text-sm">📅 <strong>Date</strong>: {medicine.date}</p>
-              </div>
-
-              {/* Download Button */}
-              <a
-                href={medicine.download}
-                target="_blank"
-                rel="noreferrer"
-                className="px-3 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all text-sm"
-              >
-                <Download />
-              </a>
-            </div>
-          ))}
+      {isLoading ? (
+        <div className="flex items-center justify-center min-h-[300px]">
+        <div className="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
+          <InfinitySpin width="150" color="#4fa94d" />
+          <p className="mt-4 text-gray-800 font-semibold animate-pulse">
+            Please wait, AI is scanning...
+          </p>
         </div>
-        <div className="bg-white flex rounded-lg shadow-lg p-6 justify-center mb-20 mt-10">Hope You Will Get Soon 😊</div>
       </div>
+    
+      
+      ) : (
+        <div className="mt-6">
+          <div className="grid grid-cols-1 gap-3 mt-10">
+            {data.history.map((medicine: any, index: any) => (
+              <div
+                key={index}
+                className="bg-white p-4 rounded-xl shadow-lg flex items-center gap-4"
+              >
+
+                <img
+                  src={medicine.img}
+                  alt="Prescription"
+                  className="w-24 h-24 object-cover rounded-lg border"
+                />
+
+                {/* Prescription Details */}
+                <div className="flex-1">
+                  <h2 className="text-lg font-bold text-gray-900">Prescription</h2>
+                  <p className="text-gray-600 text-sm">📅 <strong>Date</strong>: {medicine.date}</p>
+                </div>
+
+                {/* Download Button */}
+                <a
+                  href={medicine.download}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-3 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all text-sm"
+                >
+                  <Download />
+                </a>
+              </div>
+            ))}
+          </div>
+          <div className="bg-white flex rounded-lg shadow-lg p-6 justify-center mb-20 mt-10">Hope You Will Get Soon 😊</div>
+        </div>
+      )}
 
     </div>
   );
