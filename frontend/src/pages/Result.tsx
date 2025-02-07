@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PrescriptionPDF from "../components/PrescriptionPdf"; // Import PDF component
 
 const Result = () => {
   const location = useLocation();
-  const { data } = location.state || {};
+  const { data } = location.state || {}; // Get prescription data
 
   return (
     <div
@@ -68,12 +70,16 @@ const Result = () => {
           </div>
         ))}
       </div>
-      {/* <button
-                onClick={handleDownload}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md self-center mb-20"
-            >
-                Print Prescription
-            </button> */}
+
+      {/* Download PDF Button */}
+      <PDFDownloadLink
+        document={<PrescriptionPDF data={data} />} // Pass dynamic data
+        fileName="prescription.pdf"
+        className="mt-6 px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition self-center mb-20"
+      >
+        {({ loading }) => (loading ? "Generating PDF..." : "Download as PDF")}
+      </PDFDownloadLink>
+
       <footer className="bg-white p-4 rounded-xl shadow-md text-gray-800 text-center font-medium mt-auto mb-20">
         <p>Hope you get well soon!😊</p>
       </footer>
