@@ -7,24 +7,26 @@ import Navbar from "./components/Navbar";
 import Result from "./pages/Result";
 // Provider
 import { NavbarProvider } from "./contexts/NavbarContext";
+import { AuthProvider } from "./contexts/AuthContext";
 import PrintComponent from "./pages/Demo";
-
 
 function App() {
   return (
     <>
-      <NavbarProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/scan" element={<Scan />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/result" element={<Result />} />
-            <Route path="/PrintComponent" element={<PrintComponent/>}/>
-          </Routes>
-          <Navbar />
-        </BrowserRouter>
-      </NavbarProvider>
+      <AuthProvider>
+        <NavbarProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/scan" element={<Scan />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/result" element={<Result />} />
+              <Route path="/PrintComponent" element={<PrintComponent />} />
+            </Routes>
+            <Navbar />
+          </BrowserRouter>
+        </NavbarProvider>
+      </AuthProvider>
     </>
   );
 }

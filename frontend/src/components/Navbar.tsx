@@ -5,21 +5,54 @@ import { Home, Scan, User } from "lucide-react"; // Icons
 
 // For not displaying the Navbar on a specific page, you can use the context API. Here is an example:
 import { useNavbar } from "../contexts/NavbarContext";
-
-const navItems = [
-  { name: "Home", path: "/", icon: <Home size={30} /> },
-  { name: "Scan", path: "/scan", icon: <Scan size={30} /> },
-  { name: "Profile", path: "/profile", icon: <User size={30} /> },
-];
+import { useAuth } from "../contexts/AuthContext";
 
 const Navbar = () => {
+  const { isLoggedIn, userDetails } = useAuth();
   const [active, setActive] = useState("Home"); // Default selected: Home
+  const [profilePic, setProfilePic] = useState(<User size={30} />);
   const location = useLocation();
+
+  const navItems = [
+    { name: "Home", path: "/", icon: <Home size={30} /> },
+    { name: "Scan", path: "/scan", icon: <Scan size={30} /> },
+    { name: "Profile", path: "/profile", icon: profilePic },
+  ];
+
   useEffect(() => {
     if (location.pathname === "/") setActive("Home");
     else if (location.pathname === "/scan") setActive("Scan");
     else if (location.pathname === "/profile") setActive("Profile");
   }, [location.pathname]);
+
+  useEffect(() => {
+    // const credentials = localStorage.getItem("token");
+    // if (credentials) {
+    //   const userDetails: any = jwtDecode(credentials);
+    //   if (userDetails.picture) {
+    //     setProfilePic(
+    //       <div className="h-10 w-10 flex items-center justify-center">
+    //         <img
+    //           src={userDetails.picture}
+    //           alt="Profile"
+    //           className="w-full h-full rounded-full "
+    //         />
+    //       </div>
+    //     );
+    //   }
+    // }
+    if (isLoggedIn && userDetails) {
+      setProfilePic(
+        <div className="h-10 w-10 flex items-center justify-center">
+          <img
+            src={userDetails.profilePic}
+            alt="Profile"
+            className="w-full h-full rounded-full "
+          />
+        </div>
+      );
+    }
+  }, [isLoggedIn]);
 
   const { showNavbar } = useNavbar();
   if (!showNavbar) return null;
@@ -36,7 +69,7 @@ const Navbar = () => {
           key={item.name}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="flex flex-col items-center cursor-pointer"
+          className="flex flex-col items-center cursor-pointer justify-center"
           onClick={() => setActive(item.name)}
         >
           <Link to={item.path} className="text-green-950 flex items-center">
