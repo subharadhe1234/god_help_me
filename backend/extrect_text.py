@@ -38,9 +38,9 @@ def extrect_text(file):
         "prebuilt-read", body=file)
 
     result: AnalyzeResult = poller.result()
-    print(result.content)
+    # print(result.content)
 
-    with open("result_content.txt", "w") as output_file:
+    with open("output/result_content.txt", "w") as output_file:
         output_file.write(result.content)
         output_file.close()
 

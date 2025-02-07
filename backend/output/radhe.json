@@ -1,0 +1,17 @@
+{
+  "medicines": [
+    {
+      "name": "Tr Belladonna",
+      "dosage": "5 ml",
+      "frequency": "tid",
+      "special_instructions": "take a.c."
+    },
+    {
+      "name": "Amphogel good",
+      "dosage": "120 me",
+      "frequency": "not specified",
+      "special_instructions": "not specified"
+    }
+  ],
+  "general_instructions": "Take Tr Belladonna 5ml thrice a day before meals."
+}
