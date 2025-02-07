@@ -1,79 +1,82 @@
 import WebcamComponent from "../components/Webcam";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
-import { ArrowLeft,SendHorizontal } from "lucide-react";
+import { ArrowLeft, SendHorizontal } from "lucide-react";
 import { useNavbar } from "../contexts/NavbarContext";
 import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 
-const demoData = {
-  medicines: [
-    {
-      name: "HYDROXYCHLOROQUINE",
-      dosage: "1 gram",
-      frequency: "once a week",
-      route: "oral",
-      special_instructions: "taken only once a week",
-      websites: [
-        {
-          store: "Amazon.in",
-          price: "₹649.00",
-          link: "https://www.amazon.in/some-link",
-          image:
-            "https://images.pexels.com/photos/30462129/pexels-photo-30462129/free-photo-of-majestic-himalayan-mountain-landscape.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        },
-      ],
-    },
-    {
-      name: "VITAMIN",
-      dosage: "50 Mg",
-      frequency: "once a day",
-      route: "oral",
-      special_instructions: "taken daily once",
-      websites: [
-        {
-          store: "Amazon.in",
-          price: "₹150.00",
-          link: "https://www.amazon.in/some-vitamin-link",
-          image:
-            "https://images.pexels.com/photos/30326244/pexels-photo-30326244/free-photo-of-classic-car-driving-through-snowy-mountain-landscape.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        },
-      ],
-    },
-  ],
-  general_instructions:
-    "Practice social distancing, maintain hand hygiene, and wear a mask. Take medications as prescribed.",
-};
+// API
+import { get_medicine_names } from "../api";
+
+// const demoData = {
+//   medicines: [
+//     {
+//       name: "HYDROXYCHLOROQUINE",
+//       dosage: "1 gram",
+//       frequency: "once a week",
+//       route: "oral",
+//       special_instructions: "taken only once a week",
+//       websites: [
+//         {
+//           title: "Tolol-am 25MG 10TAB",
+//           link: "https://www.google.com/url?url=https://www.secondmedic.com/app/view-product/tolol-am-25mg-10tab-81152%3Fsrsltid%3DAfmBOor6gBlUhfZKkmos48pJI1b1j1rSyicbeZTdVQqrvA7QKC5Retm8dqA&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkIpQYoAA&usg=AOvVaw2MW4fQAVIeaugiJSLNw4XO",
+//           price: 106.1,
+//           image:
+//             "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRoZ1a-u2qXSaRDtt07imJ8qmhAINze5-VDtH6oueYJhn5ryQOkog0i_vkgoTUsS5UyGg2nOocowcosgMmFvvdRk3sxTgS0EsyZ9_goqZm7GfbKac0OqYWh&usqp=CAE",
+//         },
+//         {
+//           title: "Tolol-am 25MG 10TAB",
+//           link: "https://www.google.com/url?url=https://www.secondmedic.com/app/view-product/tolol-am-25mg-10tab-81152%3Fsrsltid%3DAfmBOor6gBlUhfZKkmos48pJI1b1j1rSyicbeZTdVQqrvA7QKC5Retm8dqA&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkIpQYoAA&usg=AOvVaw2MW4fQAVIeaugiJSLNw4XO",
+//           price: 106.1,
+//           image:
+//             "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRoZ1a-u2qXSaRDtt07imJ8qmhAINze5-VDtH6oueYJhn5ryQOkog0i_vkgoTUsS5UyGg2nOocowcosgMmFvvdRk3sxTgS0EsyZ9_goqZm7GfbKac0OqYWh&usqp=CAE",
+//         },
+//       ],
+//     },
+//     {
+//       name: "VITAMIN",
+//       dosage: "50 Mg",
+//       frequency: "once a day",
+//       route: "oral",
+//       special_instructions: "taken daily once",
+//       websites: [
+//         {
+//           title: "PIXAFLO 2.5",
+//           link: "https://www.google.com/url?url=https://www.microchemist.in/product/30244008/PIXAFLO-2-5%3Futm_source%3DGMC%26srsltid%3DAfmBOop_NSZkXrAKKoHxBHVkCIq3Ei6nqVdSmaSFfuwGVIwTFrvDeVV4-JE&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkImQYoAA&usg=AOvVaw1_XZmfCAPuGjXvKMaK-Wyo",
+//           price: 127.5,
+//           image:
+//             "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRL9s91UrnEkIbS8RfxPAwA9v3UEZrkwIl7k9eCPe-LL0tWLs8dG4X-1KcnIK-LHiyZGX1yht-HJ812hSeC5tZIiQtGvLVSDpRWniHHQLsIDtQtd06kAjQ4&usqp=CAE",
+//         },
+//         {
+//           title: "PIXAFLO 2.5",
+//           link: "https://www.google.com/url?url=https://www.microchemist.in/product/30244008/PIXAFLO-2-5%3Futm_source%3DGMC%26srsltid%3DAfmBOop_NSZkXrAKKoHxBHVkCIq3Ei6nqVdSmaSFfuwGVIwTFrvDeVV4-JE&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkImQYoAA&usg=AOvVaw1_XZmfCAPuGjXvKMaK-Wyo",
+//           price: 127.5,
+//           image:
+//             "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRL9s91UrnEkIbS8RfxPAwA9v3UEZrkwIl7k9eCPe-LL0tWLs8dG4X-1KcnIK-LHiyZGX1yht-HJ812hSeC5tZIiQtGvLVSDpRWniHHQLsIDtQtd06kAjQ4&usqp=CAE",
+//         },
+//       ],
+//     },
+//   ],
+//   general_instructions:
+//     "Practice social distancing, maintain hand hygiene, and wear a mask. Take medications as prescribed.",
+// };
 
 function Scan() {
+  const { isLoggedIn, userDetails } = useAuth();
   const navigate = useNavigate();
   const { setNavbar } = useNavbar();
   const [capture, setCapture] = useState<boolean>(false);
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState("");
-  // Default location: @22.958723,88.3777435 -> Adisaptagram
-  const [location, setLocation] = useState({
-    latitude: 22.958723,
-    longitude: 88.3777435,
-  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setImage(URL.createObjectURL(file));
     }
-    // if (file) {
-    //   const reader = new FileReader();
-
-    //   reader.onloadend = () => {
-    //     if (typeof reader.result === "string") {
-    //       setImage(reader.result);
-    //     }
-    //   };
-
-    //   reader.readAsDataURL(file);
-    // }
   };
 
   const handleSubmit = async () => {
@@ -84,53 +87,49 @@ function Scan() {
     if (!image) return "No image found!";
     let blob = await fetch(image).then((r) => r.blob());
     const file = new File([blob], "prescription.png", { type: "image/png" });
-    const formData = new FormData();
-    formData.append("image", file);
-    if (location) {
-      formData.append("location", JSON.stringify(location));
-    }
+    let data;
     try {
-      const response = await fetch("http://127.0.0.1:9999/", {
-        method: "POST",
-        body: formData,
-      });
-      if (response.status !== 200) {
-        throw new Error("File upload unsuccessful!");
-      }
-      const data = await response.json();
+      if (isLoggedIn) data = await get_medicine_names(file, userDetails?.token);
+      else data = await get_medicine_names(file);
       console.log("Response:", data);
       setNavbar(true);
       setImage("");
       setIsLoading(false);
-      // Navigate to result page
-      // TODO: change demoData to data
-      navigate("/result", { state: { data: demoData } });
-    } catch (error) {
-      console.error("Upload failed:", error);
+      navigate("/result", { state: { data: data } });
+    } catch (err) {
       setErrorMessage("Something went wrong! Please try again");
       setNavbar(true);
       setIsLoading(false);
-      navigate("/result", { state: { data: demoData } });
     }
+    // const formData = new FormData();
+    // formData.append("image", file);
+    // if (location) {
+    //   formData.append("location", JSON.stringify(location));
+    // }
+    // try {
+    //   const response = await fetch("http://127.0.0.1:9999/", {
+    //     method: "POST",
+    //     body: formData,
+    //   });
+    //   if (response.status !== 200) {
+    //     throw new Error("File upload unsuccessful!");
+    //   }
+    //   const data = await response.json();
+    //   console.log("Response:", data);
+    //   setNavbar(true);
+    //   setImage("");
+    //   setIsLoading(false);
+    //   // Navigate to result page
+    //   // TODO: change demoData to data
+    //   navigate("/result", { state: { data: demoData } });
+    // } catch (error) {
+    //   console.error("Upload failed:", error);
+    //   setErrorMessage("Something went wrong! Please try again");
+    //   setNavbar(true);
+    //   setIsLoading(false);
+    //   navigate("/result", { state: { data: demoData } });
+    // }
   };
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error("Error getting location:", error);
-        }
-      );
-    } else {
-      console.error("Geolocation is not supported by this browser.");
-    }
-  }, []);
 
   return (
     <>
@@ -138,7 +137,7 @@ function Scan() {
         <div className="w-screen h-screen flex items-center justify-center">
           <div className="flex flex-col justify-center items-center">
             <InfinitySpin width="200" color="#4fa94d" />
-            <div>Please wait AI is scanning</div>
+            <div className="animate-pulse">Please wait AI is scanning</div>
           </div>
         </div>
       ) : (
@@ -195,8 +194,8 @@ function Scan() {
                   onClick={handleSubmit}
                 >
                   <div className="flex items-center justify-center gap-2">
-                  Scan with AI 
-                  <SendHorizontal strokeWidth={2.5} />
+                    Scan with AI
+                    <SendHorizontal strokeWidth={2.5} />
                   </div>
                 </button>
                 <div className="text-red-500">{errorMessage}</div>
