@@ -1,7 +1,19 @@
+import { BrowserRouter, Routes, Route } from "react-router";
+// Pages
+import Home from "./pages/Home";
+import Scan from "./pages/Scan";
+import Profile from "./pages/Profile";
+
 function App() {
   return (
     <>
-      <div className="">Aushadhi Mitra</div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/scan" element={<Scan />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
