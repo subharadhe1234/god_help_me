@@ -3,7 +3,10 @@ from PIL import Image
 import os
 from extrect_text import *  # Import function to extract text from image
 from get_medicine_links import *  # Import function to get medicine links
-
+from data_base import *  # Import function to interact with database
+import uuid 
+from get_locations import *
+from get_medicine_details import *
 app = Flask(__name__)
 
 # Directory where images will be saved
@@ -13,7 +16,13 @@ SAVE_DIR = "output"
 if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
-@app.route('/radhe', methods=['POST'])
+# database initilize
+
+Session = initialize_db()
+session = Session()
+
+# get medicine name from image
+@app.route('/get_medicine_names', methods=['POST'])
 def main():
     """
     Handles image upload, saves the image, and extracts text using Azure Document AI.
@@ -27,6 +36,7 @@ def main():
         if "image" not in request.files:
             return jsonify({"error": "No image file uploaded"}), 400
 
+        
         img = request.files["image"]
 
         if img:
@@ -44,17 +54,28 @@ def main():
 
             # Extract text from the image
             data = extrect_text(file_bytes)
+            for i in data["medicines"]:
+                print(i)
+                i["websites"]=[]
+
+            if "token" in request.form:
+                jwt_token=request.form["token"]
+                trans_id=str(uuid.uuid4())
+                print("✅ Token found")
+                store_data(session=session,transaction_id=trans_id,jwt_token=jwt_token,site_content=data,image_path=image_filename)
+                print("✅ data successfully stored in database")
+
 
             return jsonify({
-                "message": "Image saved successfully",
-                "image_path": image_filename,
                 "data": data
             }), 200
 
         else:
             return jsonify({"error": "No image found in the request"}), 400
+        
 
-@app.route('/krishna', methods=['POST'])
+# get medicine links
+@app.route('/get_medicine_links', methods=['POST'])
 def get_medicine_links():
     """
     Accepts a text input (medicine name) and retrieves relevant medicine links.
@@ -72,6 +93,43 @@ def get_medicine_links():
     return jsonify({
         "medicines": medicines
     }), 200
+
+
+# get history
+@app.route('/history', methods=['POST'])
+def get_history():
+    if "token" in request.form:
+        jwt_token=request.form["token"]
+        history=get_all_history(session=session,jwt_token=jwt_token)
+        # save in file
+        with open('output/history.json', 'w') as f:
+            json.dump(history, f)
+
+        return jsonify({"history": history}),200
+    
+
+# get meditine detail uses and side effect
+@app.route('/get_medicine_detail', methods=['POST'])
+def get_meditine_details():
+    if "name" in request.form:
+        med_name=str(request.form["name"])
+        med_details=get_medicine_details_fun(medicine_name=med_name)
+        return jsonify({"detail": med_details}),200
+
+
+    # get location 
+@app.route('/get_location', methods=['POST'])
+def get_location():
+    if ("late" in request.form) & ("long" in request.form):
+        late=request.form["late"]
+        long=request.form["long"]
+
+        location=get_positions(latitute=late,logitute=long)
+        return jsonify({"location": location}),200
+    else:
+        return jsonify({"error": "No location data provided"}), 400
+    
+
 
 if __name__ == '__main__':
     # Run the Flask app in debug mode

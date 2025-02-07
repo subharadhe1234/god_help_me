@@ -85,7 +85,7 @@ def get_medicine_name_links(med):
         os.makedirs(output_dir, exist_ok=True)
 
         # Save the extracted data to a JSON file
-        file_path = os.path.join(output_dir, "output.json")
+        file_path = os.path.join(output_dir, "medicine_links.json")
         with open(file_path, "w", encoding="utf-8") as w:
             json.dump(medicines, w, indent=2, ensure_ascii=False)
 

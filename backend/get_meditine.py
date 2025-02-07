@@ -110,7 +110,7 @@ def get_medical_data(extracted_text):
             # Define the path to save the output JSON file
             output_dir = "output"
             os.makedirs(output_dir, exist_ok=True)  # Ensure directory exists
-            file_path = os.path.join(output_dir, "radhe.json")
+            file_path = os.path.join(output_dir, "medicine_name.json")
 
             # Save the structured data into a JSON file
             with open(file_path, "w") as json_file:

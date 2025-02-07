@@ -7,7 +7,8 @@ load_dotenv()
 SERP_API = os.getenv("SERP_API")
 
 
-def get_positions(qes,latitute,logitute):
+def get_positions(latitute,logitute):
+    qes="medical shops near me "
     params = {
     "engine": "google_maps",
     "q": qes,
@@ -44,15 +45,14 @@ def get_positions(qes,latitute,logitute):
     return locations
 
 
-if __name__ == "__main__":
-    # qes = "shop near me"
-    ques="near me medical shop"
-    latitute="@40.7455096"
-    logitute="-74.0083012"
-    locations = get_positions(ques,latitute,logitute)
-    print(locations)
-    # Save to JSON file
-    with open("output/places_data.json", "w", encoding="utf-8") as json_file:
-        json.dump(locations, json_file, indent=4, ensure_ascii=False)
+# if __name__ == "__main__":
+#     # qes = "shop near me"
+#     latitute="@40.7455096"
+#     logitute="-74.0083012"
+#     locations = get_positions(latitute,logitute)
+#     print(locations)
+#     # Save to JSON file
+#     with open("output/places_data.json", "w", encoding="utf-8") as json_file:
+#         json.dump(locations, json_file, indent=4, ensure_ascii=False)
 
-    print("Data successfully saved to places_data.json")
+#     print("Data successfully saved to places_data.json")
