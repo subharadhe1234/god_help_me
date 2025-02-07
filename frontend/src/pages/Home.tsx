@@ -1,16 +1,30 @@
 import { Link } from "react-router";
 import Button from "../components/Button";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { GoogleLogin, CredentialResponse } from "@react-oauth/google";
+import { useAuth } from "../contexts/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn, setUserDetails } = useAuth();
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [message, setMessage] = useState("");
 
   const handleLoginSuccess = (response: CredentialResponse) => {
     console.log("Google login successful: ", response);
-    if (response.credential) localStorage.setItem("token", response.credential);
+    if (response.credential) {
+      localStorage.setItem("token", response.credential);
+      const userDetails: any = jwtDecode(response.credential);
+      setUserDetails({
+        name: userDetails.name,
+        email: userDetails.email,
+        profilePic: userDetails.picture,
+        exp: userDetails.exp,
+        token: response.credential,
+      });
+    }
     setIsLoggedIn(true);
+    console.log(response);
     setMessage("Successfully logged in 🚀");
   };
 
@@ -19,14 +33,6 @@ function Home() {
     setIsLoggedIn(false);
     setMessage("Google Login failed! Please try again.");
   };
-
-  useEffect(() => {
-    const credentials = localStorage.getItem("token");
-    if (credentials) {
-      setIsLoggedIn(true);
-      // console.log(credentials);
-    }
-  }, []);
 
   return (
     <>
