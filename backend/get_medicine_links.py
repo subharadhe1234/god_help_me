@@ -7,33 +7,15 @@ import time
 from flask import Flask, request, jsonify
 import os
 
-app = Flask(__name__)
-# ocr = PaddleOCR(use_angle_cls=True, lang="en")  # Initialize PaddleOCR
 
-# Directory where images will be saved
-SAVE_DIR = "saved_images"
-
-# Create the directory if it doesn't exist
-if not os.path.exists(SAVE_DIR):
-    os.makedirs(SAVE_DIR)
-
-
-
-
-
-@app.route('/krishna', methods=['POST'])
-def get_medicine_name_links():
-    
+def get_medicine_name_links(med):
+    print("✅ call get_medicine_name_links successfully")
     # Configure headless Firefox
     options = Options()
     options.add_argument("--headless")  # Run in the background
-    # options.add_argument("--disable-blink-features=AutomationControlled")  # Bypass bot detection
     driver = webdriver.Firefox(options=options)
 
-    if "text" not in request.form:
-            return jsonify({"error": "No image file uploaded"}), 400
-    else:
-        med = request.form['text']
+    
 
     if med:
         URL = f"https://www.google.com/search?q={med}+medicine&tbm=shop"
@@ -82,22 +64,16 @@ def get_medicine_name_links():
                 json.dump(medicines, w, indent=2, ensure_ascii=False)
 
             print("✅ Data extracted, sorted by price, and saved to output.json")
-            # print(json.dumps(medicines, indent=2, ensure_ascii=False))
 
         except Exception as e:
             print("❌ Error:", e)
 
         driver.quit()
         time.sleep(3)
-        return jsonify({
-            "medicines": medicines}),200
+        return medicines
     else:
             return jsonify({"error": "No text found in the request"}), 400
-# Uncomment to run:
-# medicines = get_medicine_name_links("paracetamol")
-# print(medicines)
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
 
 
