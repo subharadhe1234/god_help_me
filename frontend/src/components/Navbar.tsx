@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Home, Scan, User } from "lucide-react"; // Icons
 
 // For not displaying the Navbar on a specific page, you can use the context API. Here is an example:
-// import { useNavbar } from "../contexts/navbarContext";
+import { useNavbar } from "../contexts/NavbarContext";
 
 const navItems = [
   { name: "Home", path: "/", icon: <Home size={30} /> },
@@ -21,8 +21,8 @@ const Navbar = () => {
     else if (location.pathname === "/profile") setActive("Profile");
   }, [location.pathname]);
 
-  // const { showNavbar } = useNavbar();
-  // if (!showNavbar) return null;
+  const { showNavbar } = useNavbar();
+  if (!showNavbar) return null;
 
   return (
     <motion.div
