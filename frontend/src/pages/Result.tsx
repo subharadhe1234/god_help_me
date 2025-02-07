@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import PrescriptionPDF from "../components/PrescriptionPdf"; // Import PDF component
