@@ -2,21 +2,24 @@
 import requests
 import json
 import re
-from fuzzywuzzy import process
-from difflib import SequenceMatcher
+# from fuzzywuzzy import process
+# from difflib import SequenceMatcher
 
 import os
 print("radhe radhe")
 from dotenv import load_dotenv
 load_dotenv()
 
-key = os.getenv("DI_KEY")
-endpoint = os.getenv("DI_ENDPOINT")
+# key = os.getenv("DI_KEY")
+# endpoint = os.getenv("DI_ENDPOINT")
 
 # Define API Key and Model Name
 API_KEY=os.getenv("API_KEY")
 MODEL_NAME =os.getenv("MODEL_NAME") 
 API_URL = os.getenv("API_URL")
+print(API_KEY)
+print(MODEL_NAME)
+print(API_URL)
 
 # Set headers with API key
 headers = {

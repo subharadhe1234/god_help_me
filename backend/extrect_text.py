@@ -1,4 +1,4 @@
-from paddleocr import PaddleOCR
+# from paddleocr import PaddleOCR
 import cv2
 import matplotlib.pyplot as plt
 from get_meditine import *
