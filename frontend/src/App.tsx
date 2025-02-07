@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import Result from "./pages/Result";
 // Provider
 import { NavbarProvider } from "./contexts/NavbarContext";
+import PrintComponent from "./pages/Demo";
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
             <Route path="/scan" element={<Scan />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/result" element={<Result />} />
-            
+            <Route path="/PrintComponent" element={<PrintComponent/>}/>
           </Routes>
           <Navbar />
         </BrowserRouter>
