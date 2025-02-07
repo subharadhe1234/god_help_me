@@ -1,6 +1,7 @@
 import WebcamComponent from "../components/Webcam";
 import { useState, useEffect } from "react";
-import { ArrowLeft } from "lucide-react";
+
+import { ArrowLeft,SendHorizontal } from "lucide-react";
 import { useNavbar } from "../contexts/NavbarContext";
 import { InfinitySpin } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
@@ -193,7 +194,10 @@ function Scan() {
                   disabled={image ? false : true}
                   onClick={handleSubmit}
                 >
-                  Scan with AI
+                  <div className="flex items-center justify-center gap-2">
+                  Scan with AI 
+                  <SendHorizontal strokeWidth={2.5} />
+                  </div>
                 </button>
                 <div className="text-red-500">{errorMessage}</div>
               </div>

@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import Button from "../components/Button";
+import logo from "../assets/google.svg";
+import { useState } from "react";
 
 function Home() {
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <>
       <nav className="absolute z-10 w-full font-primary text-[2rem] font-black justify-between items-center top-0  p-4 border-b-2 border-gray-300">
@@ -12,7 +15,7 @@ function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+
       <div>
         <div className="flex flex-col h-screen items-center justify-center px-4">
           <div className="text-4xl font-extrabold text-center leading-tight max-w-xs">
@@ -32,6 +35,22 @@ function Home() {
               <Button title="Scan Prescription" />
             </Link>
           </div>
+          {!isLogged && (
+            <div className="flex flex-col items-center justify-center bg-white mt-16 p-6 rounded-2xl shadow-lg w-full max-w-sm">
+              {/* Login Text */}
+              <p className="text-center font-semibold text-lg text-gray-800">
+                To save your scan, please login with Google
+              </p>
+
+              {/* Google Login Button */}
+              <button className="flex items-center justify-center gap-3 bg-gray-100 hover:bg-gray-200 transition-all text-gray-700 font-semibold px-5 py-3 rounded-lg shadow-md mt-4 w-full">
+                <img src={logo} alt="Google" className="w-6 h-6" />
+                Login With Google
+              </button>
+            </div>
+          )}
+
+
         </div>
       </div>
     </>

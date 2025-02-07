@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Download } from 'lucide-react';
 
 function Profile() {
+  const [loggedIn, setLoggedIn] = useState(true);
   const data = {
     "history": [
       {
@@ -26,7 +27,19 @@ function Profile() {
       "https://images.pexels.com/photos/29719977/pexels-photo-29719977/free-photo-of-woman-walking-dog-in-vibrant-city-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   };
 
-  return (
+  if (!loggedIn) return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+      <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center gap-4 w-full max-w-md text-center">
+        <h1 className="text-2xl font-bold text-gray-900">🔒 Please Login to View Profile</h1>
+        <p className="text-gray-600">Access to your profile is restricted. Please log in to continue.</p>
+        <button className="px-5 py-2 mt-2 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition-all">
+          Login Now
+        </button>
+      </div>
+    </div>
+  )
+
+  else return (
     <div className="min-h-screen bg-gray-100 p-6">
       {/* Profile Card */}
       <div className="bg-white p-6 rounded-xl shadow-lg flex sm:flex-row items-center gap-6 w-full max-w-md sm:max-w-lg lg:max-w-2xl">
@@ -62,7 +75,7 @@ function Profile() {
               key={index}
               className="bg-white p-4 rounded-xl shadow-lg flex items-center gap-4"
             >
-              
+
               <img
                 src={medicine.img}
                 alt="Prescription"

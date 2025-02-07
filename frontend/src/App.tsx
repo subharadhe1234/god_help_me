@@ -8,6 +8,7 @@ import Result from "./pages/Result";
 // Provider
 import { NavbarProvider } from "./contexts/NavbarContext";
 
+
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
             <Route path="/scan" element={<Scan />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/result" element={<Result />} />
+            
           </Routes>
           <Navbar />
         </BrowserRouter>
