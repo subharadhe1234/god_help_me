@@ -1,5 +1,5 @@
 import WebcamComponent from "../components/Webcam";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useNavbar } from "../contexts/NavbarContext";
 import { InfinitySpin } from "react-loader-spinner";
@@ -51,6 +51,11 @@ function Scan() {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState("");
+  // Default location: @22.958723,88.3777435 -> Adisaptagram
+  const [location, setLocation] = useState({
+    latitude: 22.958723,
+    longitude: 88.3777435,
+  });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -80,6 +85,9 @@ function Scan() {
     const file = new File([blob], "prescription.png", { type: "image/png" });
     const formData = new FormData();
     formData.append("image", file);
+    if (location) {
+      formData.append("location", JSON.stringify(location));
+    }
     try {
       const response = await fetch("http://127.0.0.1:9999/", {
         method: "POST",
@@ -101,8 +109,27 @@ function Scan() {
       setErrorMessage("Something went wrong! Please try again");
       setNavbar(true);
       setIsLoading(false);
+      navigate("/result", { state: { data: demoData } });
     }
   };
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  }, []);
 
   return (
     <>

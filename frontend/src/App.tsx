@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Scan from "./pages/Scan";
 import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
-
+import Result from "./pages/Result";
 // Provider
 import { NavbarProvider } from "./contexts/NavbarContext";
 
@@ -17,6 +17,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/scan" element={<Scan />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/result" element={<Result />} />
           </Routes>
           <Navbar />
         </BrowserRouter>
