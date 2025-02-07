@@ -1,0 +1,19 @@
+{
+  "medicines": [
+    {
+      "name": "Belladonna",
+      "dosage": "15 ml",
+      "frequency": "tid",
+      "route": "oral",
+      "special_instructions": "take a.c."
+    },
+    {
+      "name": "Amphogel",
+      "dosage": "5 ml",
+      "frequency": "tid",
+      "route": "oral",
+      "special_instructions": "take a.c."
+    }
+  ],
+  "general_instructions": "No additional general instructions provided."
+}
