@@ -1,14 +1,15 @@
 import { Download } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { get_history } from "../api";
 
 function Profile() {
   const { isLoggedIn, setIsLoggedIn, setUserDetails, userDetails } = useAuth();
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [historyData, setHistoryData] = useState<any>([]);
+  const [historyError, setHistoryError] = useState("");
 
   const handleLoginSuccess = (response: CredentialResponse) => {
     console.log("Google login successful: ", response);
@@ -25,13 +26,11 @@ function Profile() {
     }
     setIsLoggedIn(true);
     console.log(response);
-    setMessage("Successfully logged in 🚀");
   };
 
   const handleGoogleLoginFailure = () => {
     console.log("Google Login Failed!");
     setIsLoggedIn(false);
-    setMessage("Google Login failed! Please try again.");
   };
   const data = {
     history: [
@@ -47,15 +46,6 @@ function Profile() {
       },
     ],
   };
-  // const user_Details = {
-  //   name: "John Doe",
-  //   Age: 25,
-  //   Email: "xyz@gmail.com",
-  //   Phone: 1234567890,
-  //   Address: "123, ABC Street, XYZ City",
-  //   image:
-  //     "https://images.pexels.com/photos/29719977/pexels-photo-29719977/free-photo-of-woman-walking-dog-in-vibrant-city-street.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  // };
 
   const handleLogout = () => {
     setIsLoading(true);
@@ -72,6 +62,23 @@ function Profile() {
     });
   };
 
+  useEffect(() => {
+    const handleHistory = async () => {
+      if (isLoggedIn && userDetails) {
+        try {
+          const data = await get_history(userDetails.token);
+          setHistoryData(data);
+        } catch (err) {
+          console.error("History data could not be fetched: ", err);
+          setHistoryError("Your history could not be fetched!");
+        }
+      }
+    };
+    if (isLoggedIn && userDetails) {
+      handleHistory();
+    }
+  }, [isLoggedIn]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -81,8 +88,7 @@ function Profile() {
         </div>
       </div>
     );
-  }
-  else if (!isLoggedIn)
+  } else if (!isLoggedIn)
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
         <div className="bg-white p-8 rounded-xl shadow-lg flex flex-col items-center gap-4 w-full max-w-md text-center">
@@ -136,6 +142,9 @@ function Profile() {
         {/* History */}
         <div className="mt-6">
           <h1 className="font-black text-3xl">History</h1>
+          {historyError !== "" && (
+            <div className="text-center py-2 text-red-500">{historyError}</div>
+          )}
           <div className="grid grid-cols-1 gap-3 mt-10">
             {data.history.map((medicine: any, index: any) => (
               <div
