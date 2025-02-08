@@ -25,7 +25,7 @@ async function get_medicine_names(image: File, token?: string){
 async function get_medicine_links(name: string){
   try{
     const formData = new FormData()
-    formData.append("name", name);
+    formData.append("text", name);
     const response = await fetch(`${SERVER_URL}/get_medicine_links`, {
       method: "POST",
       body: formData
@@ -44,7 +44,8 @@ async function get_medicine_links(name: string){
 async function get_location(geoLocation: {latitude: number, longitude: number}){
   try{
     const formData = new FormData()
-    formData.append("geoLocation", JSON.stringify(geoLocation));
+    formData.append("latitude", "@"+JSON.stringify(geoLocation.latitude));
+    formData.append("longitude", JSON.stringify(geoLocation.longitude));
     const response = await fetch(`${SERVER_URL}/get_location`, {
       method: "POST",
       body: formData

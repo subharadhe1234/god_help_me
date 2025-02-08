@@ -1,0 +1,30 @@
+{
+  "medicines": [
+    {
+      "name": "Betaloc",
+      "dosage": "100mg",
+      "frequency": "BID",
+      "route": "oral",
+      "special_instructions": "Take with food."
+    },
+    {
+      "name": "Dorzolamidum",
+      "dosage": "10 mg",
+      "frequency": "BID",
+      "route": "oral"
+    },
+    {
+      "name": "Cimetidine",
+      "dosage": "50 mg",
+      "frequency": "TID",
+      "route": "oral"
+    },
+    {
+      "name": "Oxprelol",
+      "dosage": "50mg",
+      "frequency": "QD",
+      "route": "oral"
+    }
+  ],
+  "general_instructions": "Take all medications as directed. Do not take additional doses without consulting your doctor."
+}

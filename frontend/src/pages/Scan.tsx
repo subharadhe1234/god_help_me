@@ -11,56 +11,41 @@ import { useAuth } from "../contexts/AuthContext";
 import { get_medicine_names } from "../api";
 
 // const demoData = {
-//   medicines: [
-//     {
-//       name: "HYDROXYCHLOROQUINE",
-//       dosage: "1 gram",
-//       frequency: "once a week",
-//       route: "oral",
-//       special_instructions: "taken only once a week",
-//       websites: [
-//         {
-//           title: "Tolol-am 25MG 10TAB",
-//           link: "https://www.google.com/url?url=https://www.secondmedic.com/app/view-product/tolol-am-25mg-10tab-81152%3Fsrsltid%3DAfmBOor6gBlUhfZKkmos48pJI1b1j1rSyicbeZTdVQqrvA7QKC5Retm8dqA&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkIpQYoAA&usg=AOvVaw2MW4fQAVIeaugiJSLNw4XO",
-//           price: 106.1,
-//           image:
-//             "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRoZ1a-u2qXSaRDtt07imJ8qmhAINze5-VDtH6oueYJhn5ryQOkog0i_vkgoTUsS5UyGg2nOocowcosgMmFvvdRk3sxTgS0EsyZ9_goqZm7GfbKac0OqYWh&usqp=CAE",
-//         },
-//         {
-//           title: "Tolol-am 25MG 10TAB",
-//           link: "https://www.google.com/url?url=https://www.secondmedic.com/app/view-product/tolol-am-25mg-10tab-81152%3Fsrsltid%3DAfmBOor6gBlUhfZKkmos48pJI1b1j1rSyicbeZTdVQqrvA7QKC5Retm8dqA&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkIpQYoAA&usg=AOvVaw2MW4fQAVIeaugiJSLNw4XO",
-//           price: 106.1,
-//           image:
-//             "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRoZ1a-u2qXSaRDtt07imJ8qmhAINze5-VDtH6oueYJhn5ryQOkog0i_vkgoTUsS5UyGg2nOocowcosgMmFvvdRk3sxTgS0EsyZ9_goqZm7GfbKac0OqYWh&usqp=CAE",
-//         },
-//       ],
-//     },
-//     {
-//       name: "VITAMIN",
-//       dosage: "50 Mg",
-//       frequency: "once a day",
-//       route: "oral",
-//       special_instructions: "taken daily once",
-//       websites: [
-//         {
-//           title: "PIXAFLO 2.5",
-//           link: "https://www.google.com/url?url=https://www.microchemist.in/product/30244008/PIXAFLO-2-5%3Futm_source%3DGMC%26srsltid%3DAfmBOop_NSZkXrAKKoHxBHVkCIq3Ei6nqVdSmaSFfuwGVIwTFrvDeVV4-JE&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkImQYoAA&usg=AOvVaw1_XZmfCAPuGjXvKMaK-Wyo",
-//           price: 127.5,
-//           image:
-//             "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRL9s91UrnEkIbS8RfxPAwA9v3UEZrkwIl7k9eCPe-LL0tWLs8dG4X-1KcnIK-LHiyZGX1yht-HJ812hSeC5tZIiQtGvLVSDpRWniHHQLsIDtQtd06kAjQ4&usqp=CAE",
-//         },
-//         {
-//           title: "PIXAFLO 2.5",
-//           link: "https://www.google.com/url?url=https://www.microchemist.in/product/30244008/PIXAFLO-2-5%3Futm_source%3DGMC%26srsltid%3DAfmBOop_NSZkXrAKKoHxBHVkCIq3Ei6nqVdSmaSFfuwGVIwTFrvDeVV4-JE&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkImQYoAA&usg=AOvVaw1_XZmfCAPuGjXvKMaK-Wyo",
-//           price: 127.5,
-//           image:
-//             "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRL9s91UrnEkIbS8RfxPAwA9v3UEZrkwIl7k9eCPe-LL0tWLs8dG4X-1KcnIK-LHiyZGX1yht-HJ812hSeC5tZIiQtGvLVSDpRWniHHQLsIDtQtd06kAjQ4&usqp=CAE",
-//         },
-//       ],
-//     },
-//   ],
-//   general_instructions:
-//     "Practice social distancing, maintain hand hygiene, and wear a mask. Take medications as prescribed.",
+//   data: {
+//     general_instructions: "None",
+//     medicines: [
+//       {
+//         dosage: "100mg",
+//         frequency: "1 tab BID",
+//         name: "Betaloc",
+//         route: "oral",
+//         special_instructions: "O Stoel",
+//         websites: [],
+//       },
+//       {
+//         dosage: "10 mg",
+//         frequency: "1 tab BID",
+//         name: "Dorzolamidum",
+//         route: "oral",
+//         websites: [],
+//       },
+//       {
+//         dosage: "50 mg",
+//         frequency: "2 tabs TID",
+//         name: "Cimetidine",
+//         route: "oral",
+//         websites: [],
+//       },
+//       {
+//         dosage: "50mg",
+//         frequency: "1 tab QD",
+//         name: "Oxprelol",
+//         route: "oral",
+//         special_instructions: "Adobe Stor",
+//         websites: [],
+//       },
+//     ],
+//   },
 // };
 
 function Scan() {
@@ -95,7 +80,7 @@ function Scan() {
       setNavbar(true);
       setImage("");
       setIsLoading(false);
-      navigate("/result", { state: { data: data } });
+      navigate("/result", { state: { data: data.data } });
     } catch (err) {
       setErrorMessage("Something went wrong! Please try again");
       setNavbar(true);
