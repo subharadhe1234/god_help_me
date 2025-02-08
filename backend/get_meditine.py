@@ -3,16 +3,16 @@ import json
 import os
 from dotenv import load_dotenv
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
-# Retrieve API credentials from environment variables
+# Retrieve API credentials
 API_KEY = os.getenv("HUG_API_KEY")
 MODEL_NAME = os.getenv("HUG_MODEL_NAME")
 API_URL = os.getenv("HUG_API_URL")
 
-# Print API details for debugging (ensure sensitive info is not exposed in production)
-print("API Key:", API_KEY)
+# Debugging logs (remove in production)
+print("API Key:", "*****" if API_KEY else "Missing API Key")
 print("Model Name:", MODEL_NAME)
 print("API URL:", API_URL)
 
@@ -22,82 +22,62 @@ headers = {
     "Content-Type": "application/json"
 }
 
-# Function to process extracted text and return structured medical data
 def get_medical_data(extracted_text):
     """
     Calls an AI model to extract structured medical data from a given text (e.g., prescription).
-    
+
     Parameters:
         extracted_text (str): The text extracted from a prescription.
 
     Returns:
-        dict: A JSON-like dictionary with structured medical information.
+        dict: A structured dictionary containing extracted medical information.
     """
     print("✅ get_medical_data called successfully")
 
-    # Construct the request payload
-    data = {
-        "inputs": f"""
-        You are a helpful AI that extracts medicines, dosages, instructions, and additional details from a doctor's prescription.
+    # Construct an improved request payload with detailed instructions
+    prompt = f"""
+    Extract structured medical data from the following prescription text:
+    
+    "{extracted_text}"
 
-        Given the text:
-        {extracted_text}
+    Return the output in strict JSON format with **detailed information** as shown:
 
-        Please convert this prescription into the following structured JSON format:
-
+    {{
+      "medicines": [
         {{
-          "medicines": [
-            {{
-              "name": "medicine_name",
-              "dosage": "dosage_details",
-              "frequency": "how_often",
-              "duration": "duration_of_treatment",  // Optional: e.g., "for 7 days"
-              "route": "administration_route",  // Optional: e.g., "oral", "injection"
-              "purpose": "intended_use",  // Optional: e.g., "pain relief", "infection"
-              "special_instructions": "any_additional_instructions"  // Optional: e.g., "take with food", "avoid alcohol"
-            }},
-            {{
-              "name": "medicine_name",
-              "dosage": "dosage_details",
-              "frequency": "how_often",
-              "duration": "duration_of_treatment",
-              "route": "administration_route",
-              "purpose": "intended_use",
-              "special_instructions": "any_additional_instructions"
-            }}
-            // Additional medicines can be added here in the same format
-          ],
-          "general_instructions": "any_overall_instructions_or_warnings"
+          "name": "medicine_name",
+          "dosage": "dosage_details (including mg, IU, ml, etc.)",
+          "frequency": "detailed schedule (e.g., Take three times daily, every 8 hours, at 8 AM, 4 PM, 12 AM)",
+          "duration": "treatment duration in days or as needed",
+          "route": "method of administration (e.g., Oral, Injection, Topical)",
+          "purpose": "specific condition it treats (e.g., Fever, Bacterial Infection, Pain Relief)",
+          "special_instructions": "warnings or additional instructions (e.g., Take with food, Avoid alcohol, Complete the full course)"
         }}
+      ],
+      "general_instructions": "any overall instructions or warnings (e.g., Drink plenty of water, Avoid operating heavy machinery)"
+    }}
 
-        ### Output Guidelines:
-        1. **Medicines**:
-            - Provide **name** and **dosage** for each medicine.
-            - Specify how often the medicine should be taken (**frequency**) and any recommended **duration**.
-            - Include the **route** of administration (e.g., oral, topical, injection), **purpose** (e.g., pain relief, anti-inflammatory), and any **special instructions** (e.g., take with food, avoid alcohol).
+    Ensure the JSON output is:
+    - **Complete** with full details.
+    - **Accurate** with proper structure.
+    - **Well-formatted** with correct syntax.
+    """
 
-        2. **General Instructions**:
-            - Include any general **instructions** that apply to the entire prescription, such as warnings or reminders (e.g., "Drink plenty of water while on these medications").
-
-        ### Ensure that the output:
-        - Is **clear**, **structured**, and **accurate**.
-        - Only includes the necessary details, following the prescribed format.
-        - Does **not** include any explanations or additional commentary beyond the structured JSON.
-
-        Your output should look exactly like the example JSON structure, with all the necessary fields filled in appropriately based on the prescription text.
-        """
+    data = {
+        "inputs": prompt,
+        "parameters": {
+            "max_new_tokens": 500  # Adjust to allow longer responses
+        }
     }
 
     try:
-        # Send request to API
-        response = requests.post(API_URL, headers=headers, data=json.dumps(data))
+        response = requests.post(API_URL, headers=headers, json=data)
 
-        # Check if the request was successful
         if response.status_code == 200:
             result = response.json()
-            structured_output = result[0]["generated_text"]
 
-            # Attempt to extract the JSON content
+
+            structured_output = result[0]["generated_text"]
             try:
                 # print(structured_output)
                 raw_output = structured_output.split("json")[1].split("```")[0]
@@ -123,6 +103,10 @@ def get_medical_data(extracted_text):
             print(f"❌ API Request Failed: {response.status_code} - {response.text}")
             return {"error": f"API request failed with status code {response.status_code}"}
 
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Request Error: {e}")
+        return {"error": "Network error occurred"}
+
     except Exception as e:
-        print(f"❌ Error processing request: {e}")
-        return {"error": "An error occurred while processing the request"}
+        print(f"❌ Unexpected Error: {e}")
+        return {"error": "An unexpected error occurred"}

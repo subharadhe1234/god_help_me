@@ -40,7 +40,7 @@ def ai_response(medical_data, query):
             except Exception:
                 raw_output = structured_output.split("json")[1].split("```")[0]
 
-
+            print(raw_output)
             return raw_output
         else:
             return f"⚠️ API Request Failed! Status Code: {response.status_code}, Response: {response.text}"
@@ -48,16 +48,16 @@ def ai_response(medical_data, query):
     except Exception as e:
         return f"❌ Error processing request: {e}"
 
-if __name__ == "__main__":
-    # Test the function with sample data
-    medical_data = """{
-      "medicines": [
-        {"name": "Betaloc", "dosage": "100mg", "frequency": "1 tab BID"},
-        {"name": "Dorzolamidum", "dosage": "10 mg", "frequency": "1 tab BID"},
-        {"name": "Cimetidine", "dosage": "50 mg", "frequency": "2 tabs TID"},
-        {"name": "Oxprelol", "dosage": "50mg", "frequency": "1 tab QD"}
-      ]
-    }"""
+# if __name__ == "__main__":
+#     # Test the function with sample data
+#     medical_data = """{
+#       "medicines": [
+#         {"name": "Betaloc", "dosage": "100mg", "frequency": "1 tab BID"},
+#         {"name": "Dorzolamidum", "dosage": "10 mg", "frequency": "1 tab BID"},
+#         {"name": "Cimetidine", "dosage": "50 mg", "frequency": "2 tabs TID"},
+#         {"name": "Oxprelol", "dosage": "50mg", "frequency": "1 tab QD"}
+#       ]
+#     }"""
 
-    question = "Can you tell me when will i take those  medicines?"
-    print(ai_response(medical_data, question))
+    # question = "Can you tell me when will i take those  medicines?"
+    # print(ai_response(medical_data, question))
