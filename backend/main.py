@@ -8,6 +8,8 @@ import uuid
 from get_locations import *
 from get_medicine_details import *
 from flask_cors import CORS
+from chatbort import * 
+
 app = Flask(__name__)
 
 CORS(app)
@@ -25,9 +27,7 @@ Session = initialize_db()
 session = Session()
 
 # get medicine name from image
-
-
-@app.route('/get_medicine_names', methods=['POST'])
+@app.route('/get_medicine_names', methods=['POST','GET'])
 def main():
     """
     Handles image upload, saves the image, and extracts text using Azure Document AI.
@@ -36,6 +36,9 @@ def main():
     print("✅ main.py calling successfully ")
 
     # Ensure that the request method is POST
+    if request.method == 'GET':
+        return jsonify({'message': 'radhe radhe'}), 200
+
     if request.method == "POST":
         # Check if the request contains an image file
         if "image" not in request.files:
@@ -58,6 +61,8 @@ def main():
 
             # Extract text from the image
             data = extrect_text(file_bytes)
+
+            print(data)
             for i in data["medicines"]:
                 print(i)
                 i["websites"] = []
@@ -134,6 +139,24 @@ def get_location():
         return jsonify({"location": location}), 200
     else:
         return jsonify({"error": "No location data provided"}), 400
+    
+
+    # 
+@app.route('/ai_chat', methods=['POST'])
+def ai_chat():
+    if "text" in request.form:
+        text = str(request.form["text"])
+        # lode meditine_naame.json
+        with open('output/medicine_name.json', 'r') as f:
+            med_name = f.read()
+            print(med_name)
+            # load medicine_details.json
+        response = ai_response(medical_data=med_name,query=text)
+
+        return jsonify({"response": response}), 200
+    else:
+        return jsonify({"error": "No text data provided"}), 400
+
 
 
 if __name__ == '__main__':
