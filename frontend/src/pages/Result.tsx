@@ -7,6 +7,7 @@ import { InfinitySpin } from "react-loader-spinner";
 import { MapPin, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { log } from "console";
+import GenericName from "../components/GenericName";
 function toSentenceCase(str: string) {
   if (!str) return ""; // Handle empty strings
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -179,7 +180,9 @@ const demoLocationdata = {
 };
 
 const Result = () => {
-  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>({});
+  const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(null);
   const [isLoadingLinks, setIsLoadingLinks] = useState(false);
   const [isLoadingLocations, setIsLoadingLocations] = useState(false);
   const [linkErrorMessage, setLinkErrorMessage] = useState("");
@@ -218,19 +221,25 @@ const Result = () => {
     }
   }
   const handleUsage = async (e: any) => {
+    const medName = e.currentTarget.name; // Medicine name
+    const medIndex = Number(e.target.id); // Index of the medicine
+
     if (!usageDropdown) {
-      setLoading(true);
+      setLoadingId(medName); // Set loading for this medicine
+      setErrorMessage((prev) => ({ ...prev, [medName]: "" })); // Reset error
+
       try {
         setUsageDropdown(true);
-        const usageData = await fetchMedicineDetails(e.target.name);
-        setLoading(false);
+        const usageData = await fetchMedicineDetails(medName);
+        setLoadingId(null); // Remove loading state
         console.log("Usage details: ", usageData);
-        // setUsageData(usageData);
+
+        // Update medicine data with the fetched usage
         setMedicineData((prevData: any) => {
-          const updatedMedicines = [...prevData.medicines]; // Create a new array
-          updatedMedicines[Number(e.target.id)] = {
-            ...updatedMedicines[Number(e.target.id)], // Copy existing medicine data
-            usage: usageData.usage, // Update only websites
+          const updatedMedicines = [...prevData.medicines];
+          updatedMedicines[medIndex] = {
+            ...updatedMedicines[medIndex],
+            usage: usageData.usage, // Add usage info
           };
           return {
             ...prevData,
@@ -239,15 +248,16 @@ const Result = () => {
         });
       } catch (err) {
         console.error("Medicine usage cannot be fetched: ", err);
-        setLocationErrorMessage("Medicine usage could not be fetched!");
-        setLoading(false);
+        setErrorMessage((prev) => ({
+          ...prev,
+          [medName]: "Medicine usage could not be fetched!",
+        }));
+        setLoadingId(null);
       }
     } else {
       setUsageDropdown(false);
-
     }
-
-  }
+  };
 
 
   const handleMedicineLinks = async (e: any) => {
@@ -420,29 +430,35 @@ const Result = () => {
             )}
             {/* Usage Button */}
             <button
-              className="px-4 py-2 ml-5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md transition duration-300 ease-in-out"
+              className="px-4 py-2 ml-5 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300 ease-in-out"
               name={medicine.name}
               id={index.toString()}
               onClick={handleUsage}
-              disabled={loading} // Disable button while loading
+              disabled={loadingId === medicine.name}
             >
-              {loading ? "Loading..." : "Usage"}
+              {loadingId === medicine.name ? "Loading..." : "Usage"}
             </button>
 
-            {usageDropdown && Object.keys(medicine).includes("usage") && (
+            {usageDropdown && medicine.usage && (
               <div className="bg-white p-5 rounded-2xl shadow-lg text-gray-900 text-center font-medium mt-4 border border-gray-200">
-                <strong className="text-blue-600 text-lg underline decoration-dotted">
+                <strong className="text-blue-500 text-lg underline decoration-dotted">
                   Medicine Usage
                 </strong>
-                {loading ? (
-                  <p className="mt-2 text-gray-500 italic animate-pulse">Fetching details...</p>
-                ) : (
-                  <p className="mt-2 text-gray-700 text-sm leading-relaxed">
-                    {medicine?.usage}
-                  </p>
-                )}
+                <p className="mt-2 text-gray-700 text-sm leading-relaxed">
+                  {medicine.usage}
+                </p>
               </div>
             )}
+
+            {/* /* 🔴 Error Message */}
+            {errorMessage[medicine.name] && (
+              <div className="mt-2 text-red-600 bg-red-100 border border-red-400 px-3 py-2 rounded-lg text-sm">
+                {errorMessage[medicine.name]}
+              </div>
+            )}
+
+
+            <GenericName />
           </div>
         ))}
       </div>
