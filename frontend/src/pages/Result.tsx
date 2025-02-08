@@ -410,7 +410,7 @@ const Result = () => {
       <PDFDownloadLink
         document={<PrescriptionPDF data={data} />}
         fileName="prescription.pdf"
-        className="mt-6 px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition self-center mb-20"
+        className="mt-6 px-5 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition self-center mb-20"
       >
         {({ loading }) => (loading ? "Generating PDF..." : "Download as PDF")}
       </PDFDownloadLink>

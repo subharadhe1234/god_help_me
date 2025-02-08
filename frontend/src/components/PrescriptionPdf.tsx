@@ -1,14 +1,8 @@
 import React from "react";
 import { Document, Page, Text, View, StyleSheet, Link } from "@react-pdf/renderer";
-
+import { styles } from "./styles";
 // Define styles
-const styles = StyleSheet.create({
-  page: { flexDirection: "column", padding: 20 },
-  section: { marginBottom: 10, padding: 10, borderBottom: "1px solid #ccc" },
-  title: { fontSize: 22, fontWeight: "bold", textAlign: "center", marginBottom: 10 },
-  text: { fontSize: 14 },
-  link: { fontSize: 14, color: "blue", textDecoration: "underline" },
-});
+
 
 const PrescriptionPDF = ({ data }: { data: any }) => (
   <Document>
@@ -23,7 +17,7 @@ const PrescriptionPDF = ({ data }: { data: any }) => (
 
       {/* Loop through Medicines */}
       {data.medicines.map((medicine: any, index: number) => (
-        <View key={index} style={styles.section} wrap={false}>
+        <View key={index} style={styles.section}>
           <Text style={styles.text}>Medicine: {medicine.name}</Text>
           <Text style={styles.text}>Dosage: {medicine.dosage}</Text>
           <Text style={styles.text}>Frequency: {medicine.frequency}</Text>
@@ -32,7 +26,7 @@ const PrescriptionPDF = ({ data }: { data: any }) => (
 
           {/* Websites Section */}
           {medicine.websites.map((website: any, idx: number) => (
-            <View key={idx} style={[styles.section, { marginTop: 5 }]} wrap={false}>
+            <View key={idx} style={{ marginTop: 5, paddingBottom: 5 }}>
               <Text style={styles.text}>Store: {website.store}</Text>
               <Text style={styles.text}>Price: Rs. {website.price}</Text>
               <Link src={website.link} style={styles.link}>

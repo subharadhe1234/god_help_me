@@ -1,14 +1,17 @@
 {
   "medicines": [
     {
-      "name": "amoxicillin",
-      "dosage": "500mg",
-      "frequency": "3 times a day",
-      "duration": "for 7 days",
-      "route": "oral",
-      "purpose": "infection",
-      "special_instructions": "take with water"
+      "name": "Paracetamol",
+      "dosage": "500 mg",
+      "frequency": "Daily 2",
+      "special_instructions": "Take after meal"
+    },
+    {
+      "name": "Arden",
+      "dosage": "650 mg",
+      "frequency": "Daily 2",
+      "special_instructions": "Take after med"
     }
   ],
-  "general_instructions": ""
+  "general_instructions": "Don't use cold water much and keep distance from others."
 }
