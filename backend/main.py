@@ -4,10 +4,13 @@ import os
 from extrect_text import *  # Import function to extract text from image
 from get_medicine_links import *  # Import function to get medicine links
 from data_base import *  # Import function to interact with database
-import uuid 
+import uuid
 from get_locations import *
 from get_medicine_details import *
+from flask_cors import CORS
 app = Flask(__name__)
+
+CORS(app)
 
 # Directory where images will be saved
 SAVE_DIR = "output"
@@ -39,7 +42,6 @@ def main():
         if "image" not in request.files:
             return jsonify({"error": "No image file uploaded"}), 400
 
-        
         img = request.files["image"]
 
         if img:
@@ -59,15 +61,15 @@ def main():
             data = extrect_text(file_bytes)
             for i in data["medicines"]:
                 print(i)
-                i["websites"]=[]
+                i["websites"] = []
 
             if "token" in request.form:
-                jwt_token=request.form["token"]
-                trans_id=str(uuid.uuid4())
+                jwt_token = request.form["token"]
+                trans_id = str(uuid.uuid4())
                 print("✅ Token found")
-                store_data(session=session,transaction_id=trans_id,jwt_token=jwt_token,site_content=data,image_path=image_filename)
+                store_data(session=session, transaction_id=trans_id,
+                           jwt_token=jwt_token, site_content=data, image_path=image_filename)
                 print("✅ data successfully stored in database")
-
 
             return jsonify({
                 "data": data
@@ -75,7 +77,7 @@ def main():
 
         else:
             return jsonify({"error": "No image found in the request"}), 400
-        
+
 
 # get medicine links
 @app.route('/get_medicine_links', methods=['POST'])
@@ -89,7 +91,7 @@ def get_medicine_links():
         return jsonify({"error": "No text data provided"}), 400
 
     med = request.form['text']
-    
+
     # Fetch medicine links based on the provided text
     medicines = get_medicine_name_links(med=med)
 
@@ -102,36 +104,37 @@ def get_medicine_links():
 @app.route('/history', methods=['POST'])
 def get_history():
     if "token" in request.form:
-        jwt_token=request.form["token"]
-        history=get_all_history(session=session,jwt_token=jwt_token)
+        jwt_token = request.form["token"]
+        history = get_all_history(session=session, jwt_token=jwt_token)
         # save in file
         with open('output/history.json', 'w') as f:
             json.dump(history, f)
 
-        return jsonify({"history": history}),200
-    
+        return jsonify({"history": history}), 200
+
 
 # get meditine detail uses and side effect
 @app.route('/get_medicine_detail', methods=['POST'])
 def get_meditine_details():
     if "name" in request.form:
-        med_name=str(request.form["name"])
-        med_details=get_medicine_details_fun(medicine_name=med_name)
-        return jsonify({"detail": med_details}),200
+        med_name = str(request.form["name"])
+        med_details = get_medicine_details_fun(medicine_name=med_name)
+        print(med_details)
+        return jsonify({"detail": med_details}), 200
+
+    # get location
 
 
-    # get location 
 @app.route('/get_location', methods=['POST'])
 def get_location():
-    if ("late" in request.form) & ("long" in request.form):
-        late=request.form["late"]
-        long=request.form["long"]
+    if ("latitude" in request.form) and ("longitude" in request.form):
+        late = request.form["latitude"]
+        long = request.form["longitude"]
 
-        location=get_positions(latitute=late,logitute=long)
-        return jsonify({"location": location}),200
+        location = get_positions(latitute=late, logitute=long)
+        return jsonify({"location": location}), 200
     else:
         return jsonify({"error": "No location data provided"}), 400
-    
 
 
 if __name__ == '__main__':
