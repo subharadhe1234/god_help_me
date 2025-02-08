@@ -12,6 +12,7 @@ import { NavbarProvider } from "./contexts/NavbarContext";
 import PrintComponent from "./pages/Demo";
 
 import { useAuth } from "./contexts/AuthContext";
+import ChatAI from "./pages/ChatAI";
 
 function App() {
   const { setIsLoggedIn, setUserDetails } = useAuth();
@@ -44,6 +45,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/result" element={<Result />} />
             <Route path="/PrintComponent" element={<PrintComponent />} />
+            <Route path="/chatAI" element={<ChatAI />} />
           </Routes>
           <Navbar />
         </BrowserRouter>
