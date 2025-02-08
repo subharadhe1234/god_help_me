@@ -6,13 +6,14 @@ import re
 import time
 import os
 
+
 def get_medicine_name_links(med):
     """
     Fetches medicine names, prices, and links from Google Shopping results.
-    
+
     Parameters:
         med (str): The medicine name to search for.
-    
+
     Returns:
         list: A sorted list of dictionaries containing medicine details (title, link, price, image).
     """
@@ -56,10 +57,11 @@ def get_medicine_name_links(med):
             # Extract price
             price_tag = content.find("span", class_=re.compile(".*Pemb.*"))
             raw_price = price_tag.text.strip() if price_tag else "No price found"
-            
+
             # Convert price to float
             price_match = re.search(r"[\d,]+(?:\.\d+)?", raw_price)
-            price = float(price_match.group().replace(",", "")) if price_match else float("inf")
+            price = float(price_match.group().replace(",", "")
+                          ) if price_match else float("inf")
 
             # Extract image URL
             img_tag = content.find("img")
@@ -76,7 +78,7 @@ def get_medicine_name_links(med):
             # Limit results to 6
             if i == 5:
                 break
-
+        print(medicines)
         # Sort medicines by price (ascending)
         medicines = sorted(medicines, key=lambda x: x["price"])
 
@@ -98,5 +100,6 @@ def get_medicine_name_links(med):
     finally:
         # Quit WebDriver to free up resources
         driver.quit()
+        time.sleep(5)
 
     return medicines

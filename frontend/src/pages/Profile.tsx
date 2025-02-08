@@ -32,20 +32,20 @@ function Profile() {
     console.log("Google Login Failed!");
     setIsLoggedIn(false);
   };
-  const data = {
-    history: [
-      {
-        img: "https://images.pexels.com/photos/29090361/pexels-photo-29090361/free-photo-of-autumn-birch-forest-with-golden-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        date: "2021-09-01",
-        download: "https://www.google.com",
-      },
-      {
-        img: "https://images.pexels.com/photos/29090361/pexels-photo-29090361/free-photo-of-autumn-birch-forest-with-golden-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        date: "2021-09-01",
-        download: "https://www.google.com",
-      },
-    ],
-  };
+  // const data = {
+  //   history: [
+  //     {
+  //       img: "https://images.pexels.com/photos/29090361/pexels-photo-29090361/free-photo-of-autumn-birch-forest-with-golden-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  //       date: "2021-09-01",
+  //       download: "https://www.google.com",
+  //     },
+  //     {
+  //       img: "https://images.pexels.com/photos/29090361/pexels-photo-29090361/free-photo-of-autumn-birch-forest-with-golden-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  //       date: "2021-09-01",
+  //       download: "https://www.google.com",
+  //     },
+  //   ],
+  // };
 
   const handleLogout = () => {
     setIsLoading(true);
@@ -67,7 +67,8 @@ function Profile() {
       if (isLoggedIn && userDetails) {
         try {
           const data = await get_history(userDetails.token);
-          setHistoryData(data);
+          setHistoryData(data.history);
+          console.log(data);
         } catch (err) {
           console.error("History data could not be fetched: ", err);
           setHistoryError("Your history could not be fetched!");
@@ -145,40 +146,44 @@ function Profile() {
           {historyError !== "" && (
             <div className="text-center py-2 text-red-500">{historyError}</div>
           )}
-          <div className="grid grid-cols-1 gap-3 mt-10">
-            {data.history.map((medicine: any, index: any) => (
-              <div
-                key={index}
-                className="bg-white p-4 rounded-xl shadow-lg flex items-center gap-4"
-              >
-                <img
-                  src={medicine.img}
-                  alt="Prescription"
-                  className="w-24 h-24 object-cover rounded-lg border"
-                />
+          {historyData.length !== 0 ? (
+            <div className="grid grid-cols-1 gap-3 mt-10">
+              {historyData.map((medicine: any, index: any) => (
+                <div
+                  key={index}
+                  className="bg-white p-4 rounded-xl shadow-lg flex items-center gap-4"
+                >
+                  <img
+                    src={`data:image/png;base64, ${medicine.image}`}
+                    alt="Prescription"
+                    className="w-24 h-24 object-cover rounded-lg border"
+                  />
 
-                {/* Prescription Details */}
-                <div className="flex-1">
-                  <h2 className="text-lg font-bold text-gray-900">
-                    Prescription
-                  </h2>
-                  <p className="text-gray-600 text-sm">
-                    📅 <strong>Date</strong>: {medicine.date}
-                  </p>
-                </div>
+                  {/* Prescription Details */}
+                  <div className="flex-1">
+                    <h2 className="text-lg font-bold text-gray-900">
+                      Prescription
+                    </h2>
+                    <p className="text-gray-600 text-sm">
+                      📅 <strong>Date</strong>:
+                    </p>
+                  </div>
 
-                {/* Download Button */}
-                <a
+                  {/* Download Button */}
+                  {/* <a
                   href={medicine.download}
                   target="_blank"
                   rel="noreferrer"
                   className="px-3 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all text-sm"
                 >
                   <Download />
-                </a>
-              </div>
-            ))}
-          </div>
+                </a> */}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center">You have not scanned anything yet</div>
+          )}
           <div className="bg-white flex rounded-lg shadow-lg p-6 justify-center mb-20 mt-10">
             Hope You Will Get Soon 😊
           </div>

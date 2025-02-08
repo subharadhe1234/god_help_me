@@ -9,65 +9,179 @@ function toSentenceCase(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
 
+// const demoDataLink = {
+//   medicines: [
+//     {
+//       image:
+//         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQOTNFlaD9XT05vyxV3sHnbMPE-VWLxLnG33yDV9xHkeshhNSZcBNISEfJlcHXHMaP8MuqIEUqY9j5MAm5nnMQ53GkJyFeoQ1dkhTo0AEFIO7JXp1MPl08JCRPL&usqp=CAE",
+//       link: "https://www.google.com/url?url=https://www.apollopharmacy.in/medicine/dozolamide-t-eye-drops-5ml%3Fsrsltid%3DAfmBOooIAxzjx-hlixNfei2scng_NpPmCFLhHz-s1meiwVYEYtcuft0LFgc&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjCnJCo47KLAxXydmwGHZdUM-oQ1SkIpAYoAA&usg=AOvVaw3LG8iMlNPm9NatPCWnUTis",
+//       price: 209.7,
+//       title: "Dozolamide T Eye Drops 5 ml",
+//     },
+//     {
+//       image:
+//         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQOTNFlaD9XT05vyxV3sHnbMPE-VWLxLnG33yDV9xHkeshhNSZcBNISEfJlcHXHMaP8MuqIEUqY9j5MAm5nnMQ53GkJyFeoQ1dkhTo0AEFIO7JXp1MPl08JCRPL&usqp=CAE",
+//       link: "https://www.google.com/url?url=https://www.apollopharmacy.in/medicine/dozolamide-t-eye-drops-5ml%3Fsrsltid%3DAfmBOooIAxzjx-hlixNfei2scng_NpPmCFLhHz-s1meiwVYEYtcuft0LFgc&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjCnJCo47KLAxXydmwGHZdUM-oQ1SkIpAYoAA&usg=AOvVaw3LG8iMlNPm9NatPCWnUTis",
+//       price: 209.7,
+//       title: "Dozolamide T Eye Drops 5 ml",
+//     },
+//     {
+//       image: "No image found",
+//       link: "https://www.google.com/url?url=https://www.apollopharmacy.in/medicine/dozolamide-t-eye-drops-5ml%3Fsrsltid%3DAfmBOooIAxzjx-hlixNfei2scng_NpPmCFLhHz-s1meiwVYEYtcuft0LFgc&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjCnJCo47KLAxXydmwGHZdUM-oQgOUECKkG&usg=AOvVaw30opaaDDV4Rr5G9iolfkGe",
+//       price: 209.7,
+//       title: "No title found",
+//     },
+//     {
+//       image:
+//         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRtJrApdA5NMNkD0JOBvHFQFKGpKnz98UR508dcrFxDpCG2ZeRQhi5sCbY1yZOtEs_tQptsToo4oILI9koVfbUC-SdsqaXeIw&usqp=CAE",
+//       link: "https://www.google.com/url?url=https://www.dawaadost.com/medicine/dorz-eye-drop-5ml%3Fsrsltid%3DAfmBOopQnMNYZQ_uM8P29mQeXvqTNPxPHqh0Eldvm3mXFzk0fiSWHfq2sLI&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjCnJCo47KLAxXydmwGHZdUM-oQ1SkIswYoAA&usg=AOvVaw2PboVQ492gHNsgy9jE_18o",
+//       price: 404,
+//       title: "Dorz Eye Drop 5ml",
+//     },
+//     {
+//       image:
+//         "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRtJrApdA5NMNkD0JOBvHFQFKGpKnz98UR508dcrFxDpCG2ZeRQhi5sCbY1yZOtEs_tQptsToo4oILI9koVfbUC-SdsqaXeIw&usqp=CAE",
+//       link: "https://www.google.com/url?url=https://www.dawaadost.com/medicine/dorz-eye-drop-5ml%3Fsrsltid%3DAfmBOopQnMNYZQ_uM8P29mQeXvqTNPxPHqh0Eldvm3mXFzk0fiSWHfq2sLI&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjCnJCo47KLAxXydmwGHZdUM-oQ1SkIswYoAA&usg=AOvVaw2PboVQ492gHNsgy9jE_18o",
+//       price: 404,
+//       title: "Dorz Eye Drop 5ml",
+//     },
+//     {
+//       image: "No image found",
+//       link: "https://www.google.com/url?url=https://www.dawaadost.com/medicine/dorz-eye-drop-5ml%3Fsrsltid%3DAfmBOopQnMNYZQ_uM8P29mQeXvqTNPxPHqh0Eldvm3mXFzk0fiSWHfq2sLI&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjCnJCo47KLAxXydmwGHZdUM-oQgOUECLgG&usg=AOvVaw1XgXRE7bUb0AGd5hM9zPyu",
+//       price: 404,
+//       title: "No title found",
+//     },
+//   ],
+// };
+const demoLocationdata = {
+  location: [
+    {
+      address:
+        "X92P+R89, Adisaptagram Station Rd, Barakhejuria, Adisaptagram, Bansberia, Mithapukur More, West Bengal 712502, India",
+      gps_coordinates: {
+        latitude: 22.952047699999998,
+        longitude: 88.3858724,
+      },
+      hours: null,
+      open_state: null,
+      operating_hours: {},
+      phone: "+91 98310 42015",
+      photos_link:
+        "https://serpapi.com/search.json?data_id=0x39f893738d54a0bf%3A0xd37abcf49ed7a39d&engine=google_maps_photos&hl=en",
+      thumbnail:
+        "//lh4.googleusercontent.com/XuNv7pZGZ9fUaxN4iChneoyr1eRjygPcFVRcCuSsz1wrDHy5SWVd_GKIa_2HYDUiAw=w163-h92-k-no",
+      title: "Pal Pharmacy Medical Store",
+      url: "https://www.google.com/maps/place/22.952047699999998,88.3858724",
+      website: null,
+    },
+    {
+      address: "Bandel Bazar St, Bandel, Kodalia, West Bengal 712103, India",
+      gps_coordinates: {
+        latitude: 22.919183699999998,
+        longitude: 88.3760969,
+      },
+      hours: "Open ⋅ Closes 11 PM",
+      open_state: "Open ⋅ Closes 11 PM",
+      operating_hours: {
+        friday: "6 AM–11 PM",
+        monday: "6 AM–11 PM",
+        saturday: "6 AM–11 PM",
+        sunday: "6 AM–11 PM",
+        thursday: "Closed",
+        tuesday: "6 AM–11 PM",
+        wednesday: "6 AM–11 PM",
+      },
+      phone: null,
+      photos_link:
+        "https://serpapi.com/search.json?data_id=0x39f893c0aa9c9793%3A0xb52272782470bb&engine=google_maps_photos&hl=en",
+      thumbnail:
+        "https://lh5.googleusercontent.com/p/AF1QipNKTeAgQmv5tEW2oxTPbJxFfJ95j5LsJ0TxmCv-=w80-h106-k-no",
+      title: "M/s Medicine And Pathology Labs",
+      url: "https://www.google.com/maps/place/22.919183699999998,88.3760969",
+      website: null,
+    },
+    {
+      address: "W9HR+78P, Sahaganj, Chinsurah, West Bengal 712104, India",
+      gps_coordinates: {
+        latitude: 22.928212,
+        longitude: 88.39084319999999,
+      },
+      hours: null,
+      open_state: null,
+      operating_hours: {},
+      phone: "+91 98306 09403",
+      photos_link:
+        "https://serpapi.com/search.json?data_id=0x39f89391f2f833f5%3A0x383417fc8a579f1d&engine=google_maps_photos&hl=en",
+      thumbnail:
+        "https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=xfCs2kdrR-pkOkpvMbgYtQ&cb_client=search.gws-prod.gps&w=80&h=92&yaw=109.3214&pitch=0&thumbfov=100",
+      title: "Abahan Pharmacy",
+      url: "https://www.google.com/maps/place/22.928212,88.39084319999999",
+      website: null,
+    },
+    {
+      address:
+        "Public Library, R.B, Nandan Road, near Bansberia, Bansberia, Chinsurah, West Bengal 712502, India",
+      gps_coordinates: {
+        latitude: 22.9586467,
+        longitude: 88.40502939999999,
+      },
+      hours: "Closed ⋅ Opens 7 AM",
+      open_state: "Closed ⋅ Opens 7 AM",
+      operating_hours: {
+        friday: "7 AM–2 PM, 4–11 PM",
+        monday: "7 AM–2 PM, 4–11 PM",
+        saturday: "7 AM–2 PM, 4–11 PM",
+        sunday: "7 AM–2 PM, 4–11 PM",
+        thursday: "Closed",
+        tuesday: "7 AM–2 PM, 4–11 PM",
+        wednesday: "7 AM–2 PM, 4–11 PM",
+      },
+      phone: "+91 33 2634 5615",
+      photos_link:
+        "https://serpapi.com/search.json?data_id=0x39f8949cc5e0a469%3A0xdfb4fdf58c06f0e7&engine=google_maps_photos&hl=en",
+      thumbnail:
+        "//lh6.googleusercontent.com/1FHe3_eV07m7v8YhKjK-Eh1-qAJN-dRLtVuXizVOB2yYWNmN3FGG6QjLgXRxPLY=w163-h92-k-no",
+      title: "Maya Medical",
+      url: "https://www.google.com/maps/place/22.9586467,88.40502939999999",
+      website: null,
+    },
+    {
+      address:
+        "Keota, Main Road, Latbagan, Sahaganj, Bandel, West Bengal 712104, India",
+      gps_coordinates: {
+        latitude: 22.9260324,
+        longitude: 88.3970252,
+      },
+      hours: "Closed ⋅ Opens 8 AM",
+      open_state: "Closed ⋅ Opens 8 AM",
+      operating_hours: {
+        friday: "8 AM–11 PM",
+        monday: "Closed",
+        saturday: "8 AM–11 PM",
+        sunday: "8 AM–11 PM",
+        thursday: "8 AM–11 PM",
+        tuesday: "8 AM–11 PM",
+        wednesday: "8 AM–11 PM",
+      },
+      phone: "+91 85850 18540",
+      photos_link:
+        "https://serpapi.com/search.json?data_id=0x39f8938b8ba5244f%3A0x804efa0bb29361e2&engine=google_maps_photos&hl=en",
+      thumbnail:
+        "https://lh5.googleusercontent.com/p/AF1QipNdtz8PPivuSKMtalBRkMkLHhnBbNtG2hC7xZWn=w163-h92-k-no",
+      title: "Getwell Pharmacy",
+      url: "https://www.google.com/maps/place/22.9260324,88.3970252",
+      website: null,
+    },
+  ],
+};
+
 const Result = () => {
   const [linkErrorMessage, setLinkErrorMessage] = useState("");
   const [locationErrorMessage, setLocationErrorMessage] = useState("");
   const [nearbyLocations, setNearbyLocations] = useState([]);
   const location = useLocation();
+  const [medicineData, setMedicineData] = useState<any>({});
   const { data } = location.state || {};
-
-  // const data = {
-  //   medicines: [
-  //     {
-  //       name: "HYDROXYCHLOROQUINE",
-  //       dosage: "1 gram",
-  //       frequency: "once a week",
-  //       route: "oral",
-  //       special_instructions: "taken only once a week",
-  //       websites: [
-  //         {
-  //           title: "Tolol-am 25MG 10TAB",
-  //           link: "https://www.google.com/url?url=https://www.secondmedic.com/app/view-product/tolol-am-25mg-10tab-81152%3Fsrsltid%3DAfmBOor6gBlUhfZKkmos48pJI1b1j1rSyicbeZTdVQqrvA7QKC5Retm8dqA&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkIpQYoAA&usg=AOvVaw2MW4fQAVIeaugiJSLNw4XO",
-  //           price: 106.1,
-  //           image:
-  //             "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRoZ1a-u2qXSaRDtt07imJ8qmhAINze5-VDtH6oueYJhn5ryQOkog0i_vkgoTUsS5UyGg2nOocowcosgMmFvvdRk3sxTgS0EsyZ9_goqZm7GfbKac0OqYWh&usqp=CAE",
-  //         },
-  //         {
-  //           title: "Tolol-am 25MG 10TAB",
-  //           link: "https://www.google.com/url?url=https://www.secondmedic.com/app/view-product/tolol-am-25mg-10tab-81152%3Fsrsltid%3DAfmBOor6gBlUhfZKkmos48pJI1b1j1rSyicbeZTdVQqrvA7QKC5Retm8dqA&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkIpQYoAA&usg=AOvVaw2MW4fQAVIeaugiJSLNw4XO",
-  //           price: 106.1,
-  //           image:
-  //             "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRoZ1a-u2qXSaRDtt07imJ8qmhAINze5-VDtH6oueYJhn5ryQOkog0i_vkgoTUsS5UyGg2nOocowcosgMmFvvdRk3sxTgS0EsyZ9_goqZm7GfbKac0OqYWh&usqp=CAE",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       name: "VITAMIN",
-  //       dosage: "50 Mg",
-  //       frequency: "once a day",
-  //       route: "oral",
-  //       special_instructions: "taken daily once",
-  //       websites: [
-  //         {
-  //           title: "PIXAFLO 2.5",
-  //           link: "https://www.google.com/url?url=https://www.microchemist.in/product/30244008/PIXAFLO-2-5%3Futm_source%3DGMC%26srsltid%3DAfmBOop_NSZkXrAKKoHxBHVkCIq3Ei6nqVdSmaSFfuwGVIwTFrvDeVV4-JE&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkImQYoAA&usg=AOvVaw1_XZmfCAPuGjXvKMaK-Wyo",
-  //           price: 127.5,
-  //           image:
-  //             "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRL9s91UrnEkIbS8RfxPAwA9v3UEZrkwIl7k9eCPe-LL0tWLs8dG4X-1KcnIK-LHiyZGX1yht-HJ812hSeC5tZIiQtGvLVSDpRWniHHQLsIDtQtd06kAjQ4&usqp=CAE",
-  //         },
-  //         {
-  //           title: "PIXAFLO 2.5",
-  //           link: "https://www.google.com/url?url=https://www.microchemist.in/product/30244008/PIXAFLO-2-5%3Futm_source%3DGMC%26srsltid%3DAfmBOop_NSZkXrAKKoHxBHVkCIq3Ei6nqVdSmaSFfuwGVIwTFrvDeVV4-JE&rct=j&q=&esrc=s&opi=95576897&sa=U&ved=0ahUKEwjZnYDijrKLAxVfV2wGHXcwDtUQ1SkImQYoAA&usg=AOvVaw1_XZmfCAPuGjXvKMaK-Wyo",
-  //           price: 127.5,
-  //           image:
-  //             "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRL9s91UrnEkIbS8RfxPAwA9v3UEZrkwIl7k9eCPe-LL0tWLs8dG4X-1KcnIK-LHiyZGX1yht-HJ812hSeC5tZIiQtGvLVSDpRWniHHQLsIDtQtd06kAjQ4&usqp=CAE",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  //   general_instructions:
-  //     "Practice social distancing, maintain hand hygiene, and wear a mask. Take medications as prescribed.",
-  // };
   // Track which medicine's dropdown is open
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   // Default location: @22.958723,88.3777435 -> Adisaptagram
@@ -76,6 +190,10 @@ const Result = () => {
     longitude: 88.3777435,
   });
 
+  useEffect(() => {
+    setMedicineData(data);
+  }, [data]);
+
   const handleMedicineLinks = async (e: any) => {
     if (e.target.id && e.target.name) {
       setOpenDropdown(
@@ -83,10 +201,24 @@ const Result = () => {
       );
       console.log(openDropdown, Number(e.target.id));
       try {
+        console.log(toSentenceCase(e.target.name));
         const linkData = await get_medicine_links(
           toSentenceCase(e.target.name)
         );
-        data.medicines[e.target.id].websites = linkData;
+        // data.medicines[e.target.id].websites = linkData.medicines;
+        setMedicineData((prevData: any) => {
+          const updatedMedicines = [...prevData.medicines]; // Create a new array
+          updatedMedicines[e.target.id] = {
+            ...updatedMedicines[e.target.id], // Copy existing medicine data
+            websites: linkData.medicines, // Update only websites
+          };
+          return {
+            ...prevData,
+            medicines: updatedMedicines,
+          };
+        });
+
+        console.log(linkData.medicines);
       } catch (err) {
         console.error("Medicine links cannot be fetched: ", err);
         setLinkErrorMessage("Medicine links could not be fetched!");
@@ -97,7 +229,8 @@ const Result = () => {
   const handleLocationLinks = async () => {
     try {
       const locations = await get_location(geoLocation);
-      setNearbyLocations(locations);
+      console.log(locations);
+      setNearbyLocations(locations.location);
     } catch (err) {
       console.error("Error while fetching locations: ", err);
       setLocationErrorMessage("Nearby medical shops could not be fetched!");
@@ -121,7 +254,12 @@ const Result = () => {
       console.error("Geolocation is not supported by this browser.");
     }
   }, []);
-
+  if (Object.keys(medicineData).length === 0)
+    return (
+      <div className="text-2xl font-red-500 font-bold text-center">
+        There was a problem, please try again!
+      </div>
+    );
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex flex-col gap-6">
       <span className="bg-white p-4 rounded-xl shadow-md text-gray-800 text-center font-bold text-3xl">
@@ -132,11 +270,10 @@ const Result = () => {
         <strong className="underline underline-offset-2">
           General Instructions{" "}
         </strong>
-        : {data.general_instructions}
+        : {medicineData.general_instructions}
       </div>
-
       <div className="grid grid-cols-1 gap-6">
-        {data.medicines.map((medicine: any, index: number) => (
+        {medicineData.medicines.map((medicine: any, index: number) => (
           <div key={index} className="bg-white p-6 rounded-xl shadow-lg">
             <h2 className="text-xl font-bold text-green-700">
               {medicine.name}
@@ -231,11 +368,13 @@ const Result = () => {
       {nearbyLocations.length !== 0 && (
         <div>
           {nearbyLocations.map((loc: any, idx) => (
-            <div key={idx}>{loc.name}</div>
+            <div key={idx}>
+              <div>{loc.title}</div>
+              <a href={loc.url}>Link</a>
+            </div>
           ))}
         </div>
       )}
-
       {/* Download PDF Button */}
       <PDFDownloadLink
         document={<PrescriptionPDF data={data} />}

@@ -1,28 +1,18 @@
-DD FORM 1289 1 NOV 71 DOD PRESCRIPTION
-FOR (Full name, address, & phone number) (If under 12, give age)
-John R. Doe, HM3, USN
-U.S.S. Neverforgotten (DD 178)
-MEDICAL FACILITY
-U.S.S: Never forgotten (DD 178)
-DATE
-23 JAN 99
-R (Superscription) (Inscription)
-gm or ml.
-15
-me
-Tr Belladonna Amphogel good 120 me
-(Subscription)
-m & IT Solutions
-(Signa)
-Seg: 5 ml tid a.c.
-MFGR:
-Wyeth
-EXP DATE:
-12/02
-LOT NO: P39K106
-FILLED BY:
-KMT
-10072
-R NUMBER
-Jack R. Frost LODR. MD. USMR SIGNATURE RANK AND DEGREE
-EDITION OF 1 JAN 60 MAY BE USED FOR S/N 0102-LF-012-6201
+Adobe Stol
+Stock
+MEDICAL CENTRE 824 14th Street New York, NY 91743, USA
+NAME John Smith
+AGE 34
+ADDRESS 162 Example St, NY
+DATE 09-11-12
+R X
+Betaloc 100mg - 1 tab BID O Stoel
+Dorzolamidum 10 mg - 1 tab BID Cimetidine 50 mg - 2 tabs TID Oxprelol 50mg - 1 tab QD Adobe Stor
+Adobe Stock
+K
+løbe dobe Stock
+Dr. Steve Johnson
+signature Stock
+LABEL REFILL 0 1 2 3 4 5 PRN
+dobe
+WTX-N-PRESC-T 1-889-422-0700
