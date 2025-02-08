@@ -1,6 +1,26 @@
 const SERVER_URL = import.meta.env.VITE_SERVER_URL || "http://localhost:5000"
 
 
+export const fetchMedicineDetails = async (medicineName: string) => {
+  try {
+    const formData = new FormData();
+    formData.append("name", medicineName);
+    const response = await fetch(`${SERVER_URL}/get_medicine_detail`, {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    return data.detail;
+    
+  }catch(err){
+    console.error(err);
+    throw err;
+  }
+};
+
+
+
+
 export const fetchAIResponse = async (message: string): Promise<string> => {
   try {
     console.log("Sending message to AI:", message);
