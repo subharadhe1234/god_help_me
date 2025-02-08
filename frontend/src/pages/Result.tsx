@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 import { get_medicine_links, get_location } from "../api";
 import { InfinitySpin } from "react-loader-spinner";
 import { MapPin } from "lucide-react";
-import { div } from "framer-motion/client";
-
 function toSentenceCase(str: string) {
   if (!str) return ""; // Handle empty strings
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -208,11 +206,11 @@ const Result = () => {
       console.log(openDropdown, Number(e.target.id));
       try {
         console.log(toSentenceCase(e.target.name));
-        setIsLoadingLinks(true)
+        setIsLoadingLinks(true);
         const linkData = await get_medicine_links(
           toSentenceCase(e.target.name)
         );
-        setIsLoadingLinks(false)
+        setIsLoadingLinks(false);
         // data.medicines[e.target.id].websites = linkData.medicines;
         setMedicineData((prevData: any) => {
           const updatedMedicines = [...prevData.medicines]; // Create a new array
@@ -230,7 +228,7 @@ const Result = () => {
       } catch (err) {
         console.error("Medicine links cannot be fetched: ", err);
         setLinkErrorMessage("Medicine links could not be fetched!");
-        setIsLoadingLinks(false)
+        setIsLoadingLinks(false);
       }
     }
   };
@@ -389,22 +387,39 @@ const Result = () => {
           <InfinitySpin width="200" color="#4fa94d" />
           Loading...
         </div>
-      ) : (nearbyLocations.length !== 0 && (
-        <div className="grid grid-cols-1 gap-6 p-6">
-          <h2 className="text-center text-xl font-bold text-green-700">Nearby Locations</h2>
-          {nearbyLocations.map((loc: any, idx) => (
-            <div className="flex justify-between bg-white shadow-lg rounded-xl  p-6 items-center gap-4 w-full" key={idx}>
-              <img src={loc.thumbnail} alt="Thumbnail" className="h-20 w-20 rounded-xl " />
-              <div>
-                <div className="font-semibold text-md">{loc.title}</div>
-                <div className="text-sm text-gray-400">{loc.address}</div>
-                <div className="text-sm"><strong>Phone No</strong>: {loc.phone}</div>
+      ) : (
+        nearbyLocations.length !== 0 && (
+          <div className="grid grid-cols-1 gap-6 p-6">
+            <h2 className="text-center text-xl font-bold text-green-700">
+              Nearby Locations
+            </h2>
+            {nearbyLocations.map((loc: any, idx) => (
+              <div
+                className="flex justify-between bg-white shadow-lg rounded-xl  p-6 items-center gap-4 w-full"
+                key={idx}
+              >
+                <img
+                  src={loc.thumbnail}
+                  alt="Thumbnail"
+                  className="h-20 w-20 rounded-xl "
+                />
+                <div>
+                  <div className="font-semibold text-md">{loc.title}</div>
+                  <div className="text-sm text-gray-400">{loc.address}</div>
+                  <div className="text-sm">
+                    <strong>Phone No</strong>: {loc.phone}
+                  </div>
+                </div>
+                <a
+                  className="bg-green-600 p-3 text-white rounded-lg"
+                  href={loc.url}
+                >
+                  <MapPin />
+                </a>
               </div>
-              <a className="bg-green-600 p-3 text-white rounded-lg" href={loc.url}><MapPin /></a>
-            </div>
-          ))}
-        </div>
-      )
+            ))}
+          </div>
+        )
       )}
       {/* Download PDF Button */}
       <PDFDownloadLink
