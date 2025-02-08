@@ -1,14 +1,41 @@
 {
   "medicines": [
     {
-      "name": "Paracetamol",
-      "dosage": "500 mg",
-      "frequency": "Once daily after lunch",
+      "name": "Betaloc 100mg",
+      "dosage": "100mg",
+      "frequency": "Twice a day (Every 12 hours)",
       "duration": "As needed",
       "route": "Oral",
-      "purpose": "Pain relief or fever reduction",
-      "special_instructions": "Do not exceed the recommended dose. Avoid alcohol. Consult a healthcare professional if symptoms persist."
+      "purpose": "Hypertension management",
+      "special_instructions": "Take with food, avoid alcohol"
+    },
+    {
+      "name": "Dorzolamidum 10mg",
+      "dosage": "10mg",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Glaucoma treatment",
+      "special_instructions": "Take with food, avoid alcohol"
+    },
+    {
+      "name": "Cimetidine 50mg",
+      "dosage": "50mg",
+      "frequency": "Three times a day (Every 8 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Heartburn and acid reflux",
+      "special_instructions": "Take with food, avoid alcohol"
+    },
+    {
+      "name": "Oxprelol 50mg",
+      "dosage": "50mg",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Pain relief",
+      "special_instructions": "Take with food, avoid alcohol"
     }
   ],
-  "general_instructions": "Take the medication as directed. Ensure adequate hydration. If experiencing side effects, contact your healthcare provider."
+  "general_instructions": "Drink plenty of water, avoid operating heavy machinery, complete the full course of treatment"
 }

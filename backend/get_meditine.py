@@ -22,6 +22,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
+
 def get_medical_data(extracted_text):
     """
     Calls an AI model to extract structured medical data from a given text (e.g., prescription).
@@ -61,6 +62,11 @@ def get_medical_data(extracted_text):
     - **Complete** with full details.
     - **Accurate** with proper structure.
     - **Well-formatted** with correct syntax.
+    *BID** → **Twice a day** (Every 12 hours)  
+  - **TID** → **Three times a day** (Every 8 hours)  
+  - **QD** → **Once a day**  
+  - **Tab** → **Tablet**
+    - give me the all name may be medicine so give me problaty of how mauct it may meditine name give in bracket()
     """
 
     data = {
@@ -75,7 +81,6 @@ def get_medical_data(extracted_text):
 
         if response.status_code == 200:
             result = response.json()
-
 
             structured_output = result[0]["generated_text"]
             try:
@@ -100,7 +105,8 @@ def get_medical_data(extracted_text):
             return output
 
         else:
-            print(f"❌ API Request Failed: {response.status_code} - {response.text}")
+            print(
+                f"❌ API Request Failed: {response.status_code} - {response.text}")
             return {"error": f"API request failed with status code {response.status_code}"}
 
     except requests.exceptions.RequestException as e:

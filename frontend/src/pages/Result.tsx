@@ -499,7 +499,6 @@ const Result = () => {
                 </a>
               </div>
             ))}
-
           </div>
         )
       )}
