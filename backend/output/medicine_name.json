@@ -1,14 +1,14 @@
 {
   "medicines": [
     {
-      "name": "Amoxicillin",
-      "dosage": "500mg",
-      "frequency": "1 cap 3 times a day",
-      "duration": "14 days",
+      "name": "Paracetamol",
+      "dosage": "500 mg",
+      "frequency": "Once daily after lunch",
+      "duration": "As needed",
       "route": "Oral",
-      "purpose": "Bacterial Infection",
-      "special_instructions": "Complete the full course"
+      "purpose": "Pain relief or fever reduction",
+      "special_instructions": "Do not exceed the recommended dose. Avoid alcohol. Consult a healthcare professional if symptoms persist."
     }
   ],
-  "general_instructions": "Take as directed by the physician."
+  "general_instructions": "Take the medication as directed. Ensure adequate hydration. If experiencing side effects, contact your healthcare provider."
 }

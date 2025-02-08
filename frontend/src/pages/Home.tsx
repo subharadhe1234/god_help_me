@@ -44,11 +44,7 @@ function Home() {
           </div>
         </div>
       </nav>
-      <div className="fixed bottom-24 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg hover:bg-green-700 transition">
-        <Link to="/chatAI">
-          <MessageCircle size={30} />
-        </Link>
-      </div>
+      
 
       <div>
         <div className="flex flex-col h-screen items-center justify-center px-4">
