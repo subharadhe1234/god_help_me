@@ -142,21 +142,41 @@ def get_location():
     
 
     # 
+# @app.route('/ai_chat', methods=['POST'])
+# def ai_chat():
+#     if "text" in request.form:
+#         text = str(request.form["text"])
+#         # lode meditine_naame.json
+#         with open('output/medicine_name.json', 'r') as f:
+#             med_name = f.read()
+#             print(med_name)
+#             # load medicine_details.json
+#         response = ai_response(medical_data=med_name,query=text)
+
+#         return jsonify({"response": response}), 200
+#     else:
+#         return jsonify({"error": "No text data provided"}), 400
+
 @app.route('/ai_chat', methods=['POST'])
 def ai_chat():
-    if "text" in request.form:
-        text = str(request.form["text"])
-        # lode meditine_naame.json
+    try:
+        data = request.get_json()  # Ensure JSON input is read properly
+        if not data or "text" not in data:
+            return jsonify({"error": "No text data provided"}), 400
+
+        user_text = data["text"]
+
+        # Load medicine_name.json as a string
         with open('output/medicine_name.json', 'r') as f:
-            med_name = f.read()
-            print(med_name)
-            # load medicine_details.json
-        response = ai_response(medical_data=med_name,query=text)
+            med_name = f.read()  # Read as plain text
 
-        return jsonify({"response": response}), 200
-    else:
-        return jsonify({"error": "No text data provided"}), 400
+        # Call AI response function (assuming it returns a string)
+        response = ai_response(medical_data=med_name, query=user_text)
 
+        return jsonify({"response": response}), 200  # Wrap response in JSON format
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 if __name__ == '__main__':
