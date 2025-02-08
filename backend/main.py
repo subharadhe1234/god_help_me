@@ -8,7 +8,7 @@ import uuid
 from get_locations import *
 from get_medicine_details import *
 from flask_cors import CORS
-from chatbort import * 
+from chatbort import *
 from send_sms import *
 from get_medicine_details import *
 from search_med_generic_name import *
@@ -29,7 +29,9 @@ Session = initialize_db()
 session = Session()
 
 # get medicine name from image
-@app.route('/get_medicine_names', methods=['POST','GET'])
+
+
+@app.route('/get_medicine_names', methods=['POST', 'GET'])
 def main():
     """
     Handles image upload, saves the image, and extracts text using Azure Document AI.
@@ -74,7 +76,7 @@ def main():
                 trans_id = str(uuid.uuid4())
                 print("✅ Token found")
                 store_data(session=session, transaction_id=trans_id,
-                        jwt_token=jwt_token, site_content=data, image_path=image_filename)
+                           jwt_token=jwt_token, site_content=data, image_path=image_filename)
                 print("✅ data successfully stored in database")
 
             return jsonify({
@@ -143,12 +145,12 @@ def get_location():
 
 
 # send msg
-@app.route('/send_msg',methods=["POST"])
+@app.route('/send_msg', methods=["POST"])
 def send_msg():
     if ("msg" in request.form) and ("num" in request.form):
         msg = str(request.form["msg"])
         num = str(request.form["num"])
-        sendMsg(msg=msg,to_num=num)
+        sendMsg(msg=msg, to_num=num)
         # send msg to user
         return jsonify({"response": "msg send succesfully"}), 200
     else:
@@ -185,14 +187,13 @@ def ai_chat():
         # Call AI response function (assuming it returns a string)
         response = ai_response(medical_data=med_name, query=user_text)
 
-        return jsonify({"response": response}), 200  # Wrap response in JSON format
+        # Wrap response in JSON format
+        return jsonify({"response": response}), 200
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
     
-
-
 
 
 
