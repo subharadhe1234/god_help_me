@@ -12,6 +12,9 @@ from chatbort import *
 from send_sms import *
 from get_medicine_details import *
 from search_med_generic_name import *
+from geminy_helper import *
+
+
 app = Flask(__name__)
 
 CORS(app)
@@ -65,18 +68,38 @@ def main():
 
             # Extract text from the image
             data = extrect_text(file_bytes)
+            print("✅ extrected text found")
+
 
             print(data)
             for i in data["medicines"]:
-                print(i)
+                # print(i)
                 i["websites"] = []
+
+
+            if "number" in request.form:
+                num = request.form["number"]
+                print("✅ Number found")
+                # Prompt for AI processing
+                prompt = f"extrect the time imformation from the following json data when we have to use this meditnine time when wehen we have to use this medicine ex: 8:00 am 12:00 pm 9:00 pm if any person day start ai 8:00 so say wich time we have to take meditine and you ect best of the give data json outout no additional value:\n{data}"
+                num=str(num)
+                # Get AI response
+                msg = AI_FILTER(prompt)
+                print("✅ AI response found")
+                msg=str(msg)
+                # msg="radhe radhe"
+                sendMsg(msg=msg,to_num=num)
+                print(f"✅ sms successfully sent in {num}")
+
+
+
 
             if "token" in request.form:
                 jwt_token = request.form["token"]
                 trans_id = str(uuid.uuid4())
                 print("✅ Token found")
                 store_data(session=session, transaction_id=trans_id,
-                           jwt_token=jwt_token, site_content=data, image_path=image_filename)
+                        jwt_token=jwt_token, site_content=data, image_path=image_filename)
                 print("✅ data successfully stored in database")
 
             return jsonify({

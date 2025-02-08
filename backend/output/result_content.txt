@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 DEA# GB 05455616 De
 LIC # 976269
 DI e
@@ -24,9 +23,3 @@ Adobe Stock
 Stock
 Stock.
 A
-=======
-Paracetamol - 500 mg Daily 2 After meal
-0 Arden - 650 mg
-Daily 2 After med
-Don't use cold water much and keep distance from others.
->>>>>>> 752d194d12955b6c86ab600f98b643ad62b07e5c

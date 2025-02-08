@@ -1,7 +1,6 @@
 {
   "medicines": [
     {
-<<<<<<< HEAD
       "name": "Betaloc 100mg",
       "dosage": "100mg",
       "frequency": "Twice a day (Every 12 hours)",
@@ -39,25 +38,4 @@
     }
   ],
   "general_instructions": "No overall instructions provided."
-=======
-      "name": "Paracetamol",
-      "dosage": "500 mg",
-      "frequency": "Twice a day",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Pain Relief, Fever",
-      "special_instructions": "Take after meal"
-    },
-    {
-      "name": "Arden",
-      "dosage": "650 mg",
-      "frequency": "Twice a day",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Unknown",
-      "special_instructions": "Take after med"
-    }
-  ],
-  "general_instructions": "Don't use cold water much and keep distance from others."
->>>>>>> 752d194d12955b6c86ab600f98b643ad62b07e5c
 }
