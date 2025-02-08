@@ -1,41 +1,41 @@
 {
   "medicines": [
     {
-      "name": "Betaloc",
+      "name": "Betaloc 100mg",
       "dosage": "100mg",
-      "frequency": "1 tab BID",
-      "duration": "as needed",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
       "route": "Oral",
-      "purpose": "Hypertension management",
-      "special_instructions": "Take with food, avoid alcohol"
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
     },
     {
-      "name": "Dorzolamidum",
+      "name": "Dorzolamidum 10 mg",
       "dosage": "10 mg",
-      "frequency": "1 tab BID",
-      "duration": "as needed",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
       "route": "Oral",
-      "purpose": "Glaucoma treatment",
-      "special_instructions": "Take with food, avoid alcohol"
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
     },
     {
-      "name": "Cimetidine",
+      "name": "Cimetidine 50 mg",
       "dosage": "50 mg",
-      "frequency": "2 tabs TID",
-      "duration": "as needed",
+      "frequency": "Three times a day (Every 8 hours)",
+      "duration": "As needed",
       "route": "Oral",
-      "purpose": "Acid reflux treatment",
-      "special_instructions": "Take with food, avoid alcohol"
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
     },
     {
-      "name": "Oxprelol",
-      "dosage": "50mg",
-      "frequency": "1 tab QD",
-      "duration": "as needed",
+      "name": "Oxprelol 50mg",
+      "dosage": "50 mg",
+      "frequency": "Once a day",
+      "duration": "As needed",
       "route": "Oral",
-      "purpose": "Pain relief",
-      "special_instructions": "Take with food, avoid alcohol"
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
     }
   ],
-  "general_instructions": "Take all medications as prescribed, complete the full course, avoid alcohol, and drink plenty of water."
+  "general_instructions": "No overall instructions provided."
 }

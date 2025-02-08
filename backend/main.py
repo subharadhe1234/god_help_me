@@ -9,6 +9,7 @@ from get_locations import *
 from get_medicine_details import *
 from flask_cors import CORS
 from chatbort import * 
+from send_sms import *
 
 app = Flask(__name__)
 
@@ -126,9 +127,8 @@ def get_meditine_details():
         print(med_details)
         return jsonify({"detail": med_details}), 200
 
-    # get location
 
-
+# get location
 @app.route('/get_location', methods=['POST'])
 def get_location():
     if ("latitude" in request.form) and ("longitude" in request.form):
@@ -139,9 +139,22 @@ def get_location():
         return jsonify({"location": location}), 200
     else:
         return jsonify({"error": "No location data provided"}), 400
-    
 
-    # 
+
+# send msg
+@app.route('/send_msg',methods=["POST"])
+def send_msg():
+    if ("msg" in request.form) and ("num" in request.form):
+        msg = str(request.form["msg"])
+        num = str(request.form["num"])
+        sendMsg(msg=msg,to_num=num)
+        # send msg to user
+        return jsonify({"response": "msg send succesfully"}), 200
+    else:
+        return jsonify({"error": "No msg data provided"}), 400
+
+
+# a chat with ai
 @app.route('/ai_chat', methods=['POST'])
 def ai_chat():
     if "text" in request.form:
@@ -156,6 +169,8 @@ def ai_chat():
         return jsonify({"response": response}), 200
     else:
         return jsonify({"error": "No text data provided"}), 400
+
+
 
 
 
