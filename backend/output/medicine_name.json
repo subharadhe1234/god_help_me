@@ -1,0 +1,41 @@
+{
+  "medicines": [
+    {
+      "name": "Betaloc 100mg",
+      "dosage": "100mg",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
+    },
+    {
+      "name": "Dorzolamidum 10 mg",
+      "dosage": "10 mg",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
+    },
+    {
+      "name": "Cimetidine 50 mg",
+      "dosage": "50 mg",
+      "frequency": "Three times a day (Every 8 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
+    },
+    {
+      "name": "Oxprelol 50mg",
+      "dosage": "50 mg",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
+    }
+  ],
+  "general_instructions": "No overall instructions provided."
+}

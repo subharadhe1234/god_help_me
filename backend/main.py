@@ -10,7 +10,8 @@ from get_medicine_details import *
 from flask_cors import CORS
 from chatbort import * 
 from send_sms import *
-
+from get_medicine_details import *
+from search_med_generic_name import *
 app = Flask(__name__)
 
 CORS(app)
@@ -154,6 +155,19 @@ def send_msg():
         return jsonify({"error": "No msg data provided"}), 400
 
 
+@app.route('/generic_name_search', methods=['POST'])
+def generic_name_search():
+    try:
+        if "name" in request.form:
+            name = str(request.form["name"])
+            # Call function to search for generic name
+            results=get_medicine_data(medicine_name=name)
+            return jsonify({"results": results}), 200
+        else:
+            return jsonify({"error": "No name data provided"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 # a chat with ai
 @app.route('/ai_chat', methods=['POST'])
 def ai_chat():
@@ -175,6 +189,9 @@ def ai_chat():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+    
+
 
 
 
