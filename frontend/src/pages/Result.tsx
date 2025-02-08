@@ -3,6 +3,9 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import PrescriptionPDF from "../components/PrescriptionPdf";
 import { useState, useEffect } from "react";
 import { get_medicine_links, get_location } from "../api";
+import { InfinitySpin } from "react-loader-spinner";
+import { MapPin } from "lucide-react";
+import { div } from "framer-motion/client";
 
 function toSentenceCase(str: string) {
   if (!str) return ""; // Handle empty strings
@@ -176,6 +179,8 @@ const demoLocationdata = {
 };
 
 const Result = () => {
+  const [isLoadingLinks, setIsLoadingLinks] = useState(false);
+  const [isLoadingLocations, setIsLoadingLocations] = useState(false);
   const [linkErrorMessage, setLinkErrorMessage] = useState("");
   const [locationErrorMessage, setLocationErrorMessage] = useState("");
   const [nearbyLocations, setNearbyLocations] = useState([]);
@@ -203,9 +208,11 @@ const Result = () => {
       console.log(openDropdown, Number(e.target.id));
       try {
         console.log(toSentenceCase(e.target.name));
+        setIsLoadingLinks(true)
         const linkData = await get_medicine_links(
           toSentenceCase(e.target.name)
         );
+        setIsLoadingLinks(false)
         // data.medicines[e.target.id].websites = linkData.medicines;
         setMedicineData((prevData: any) => {
           const updatedMedicines = [...prevData.medicines]; // Create a new array
@@ -223,18 +230,22 @@ const Result = () => {
       } catch (err) {
         console.error("Medicine links cannot be fetched: ", err);
         setLinkErrorMessage("Medicine links could not be fetched!");
+        setIsLoadingLinks(false)
       }
     }
   };
 
   const handleLocationLinks = async () => {
     try {
+      setIsLoadingLocations(true);
       const locations = await get_location(geoLocation);
       console.log(locations);
       setNearbyLocations(locations.location);
+      setIsLoadingLocations(false);
     } catch (err) {
       console.error("Error while fetching locations: ", err);
       setLocationErrorMessage("Nearby medical shops could not be fetched!");
+      setIsLoadingLocations(false);
     }
   };
 
@@ -344,9 +355,16 @@ const Result = () => {
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-gray-500 text-center">
-                    No links available
-                  </p>
+                  <div>
+                    {isLoadingLinks ? (
+                      <div className="flex flex-col justify-center items-center text-center">
+                        <InfinitySpin width="200" color="#4fa94d" />
+                        Loading...
+                      </div>
+                    ) : (
+                      <p>No Links Are Found</p>
+                    )}
+                  </div>
                 )}
               </div>
             )}
@@ -366,15 +384,27 @@ const Result = () => {
       ) : (
         ""
       )}
-      {nearbyLocations.length !== 0 && (
-        <div>
+      {isLoadingLocations ? (
+        <div className="flex flex-col justify-center items-center text-center">
+          <InfinitySpin width="200" color="#4fa94d" />
+          Loading...
+        </div>
+      ) : (nearbyLocations.length !== 0 && (
+        <div className="grid grid-cols-1 gap-6 p-6">
+          <h2 className="text-center text-xl font-bold text-green-700">Nearby Locations</h2>
           {nearbyLocations.map((loc: any, idx) => (
-            <div key={idx}>
-              <div>{loc.title}</div>
-              <a href={loc.url}>Link</a>
+            <div className="flex justify-between bg-white shadow-lg rounded-xl  p-6 items-center gap-4 w-full" key={idx}>
+              <img src={loc.thumbnail} alt="Thumbnail" className="h-20 w-20 rounded-xl " />
+              <div>
+                <div className="font-semibold text-md">{loc.title}</div>
+                <div className="text-sm text-gray-400">{loc.address}</div>
+                <div className="text-sm"><strong>Phone No</strong>: {loc.phone}</div>
+              </div>
+              <a className="bg-green-600 p-3 text-white rounded-lg" href={loc.url}><MapPin /></a>
             </div>
           ))}
         </div>
+      )
       )}
       {/* Download PDF Button */}
       <PDFDownloadLink

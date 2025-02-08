@@ -4,12 +4,21 @@ import { useEffect, useState } from "react";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { get_history } from "../api";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import PrescriptionPDF from "../components/PrescriptionPdf";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
+
+  const navigate = useNavigate();
   const { isLoggedIn, setIsLoggedIn, setUserDetails, userDetails } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
   const [historyData, setHistoryData] = useState<any>([]);
   const [historyError, setHistoryError] = useState("");
+
+  const handleNavigateResult = (index: number) => {
+    navigate("/result", { state: { data: historyData[index].site_content } });
+  }
 
   const handleLoginSuccess = (response: CredentialResponse) => {
     console.log("Google login successful: ", response);
@@ -32,20 +41,6 @@ function Profile() {
     console.log("Google Login Failed!");
     setIsLoggedIn(false);
   };
-  // const data = {
-  //   history: [
-  //     {
-  //       img: "https://images.pexels.com/photos/29090361/pexels-photo-29090361/free-photo-of-autumn-birch-forest-with-golden-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  //       date: "2021-09-01",
-  //       download: "https://www.google.com",
-  //     },
-  //     {
-  //       img: "https://images.pexels.com/photos/29090361/pexels-photo-29090361/free-photo-of-autumn-birch-forest-with-golden-leaves.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  //       date: "2021-09-01",
-  //       download: "https://www.google.com",
-  //     },
-  //   ],
-  // };
 
   const handleLogout = () => {
     setIsLoading(true);
@@ -133,6 +128,7 @@ function Profile() {
 
             {/* Hoverable Edit Button */}
             <button
+
               className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600 transition-all"
               onClick={handleLogout}
             >
@@ -147,40 +143,55 @@ function Profile() {
             <div className="text-center py-2 text-red-500">{historyError}</div>
           )}
           {historyData.length !== 0 ? (
-            <div className="grid grid-cols-1 gap-3 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
               {historyData.map((medicine: any, index: any) => (
-                <div
+                <button
                   key={index}
-                  className="bg-white p-4 rounded-xl shadow-lg flex items-center gap-4"
-                >
-                  <img
-                    src={`data:image/png;base64, ${medicine.image}`}
-                    alt="Prescription"
-                    className="w-24 h-24 object-cover rounded-lg border"
-                  />
+                  onClick={() => {
+                    handleNavigateResult(index)
+                  }}>
+                  <div
+                    key={index}
+                    className="bg-white p-6 rounded-2xl shadow-lg flex items-center transition-all duration-300 hover:shadow-xl"
+                  >
+                    {/* Prescription Image */}
+                    <img
+                      src={`data:image/png;base64, ${medicine.image}`}
+                      alt="Prescription"
+                      className="w-20 h-20 object-cover rounded-lg border border-gray-300"
+                    />
 
-                  {/* Prescription Details */}
-                  <div className="flex-1">
-                    <h2 className="text-lg font-bold text-gray-900">
-                      Prescription
-                    </h2>
-                    <p className="text-gray-600 text-sm">
-                      📅 <strong>Date</strong>:
-                    </p>
+                    {/* Prescription Details */}
+                    <div className=" text-left ml-6 w-full">
+                      <h2 className="text-lg font-bold text-gray-900">
+                        Prescription {index + 1}
+                      </h2>
+                      <p className="text-gray-600 text-sm mt-1">
+                        📅 <strong>Date:</strong> {medicine.date}
+                      </p>
+                    </div>
+
+                    {/* Download Button */}
+                    <div className="mt-4">
+                      <PDFDownloadLink
+                        document={<PrescriptionPDF data={medicine.site_content} />}
+                        fileName={`prescription-${index + 1}.pdf`}
+                        className="flex items-center gap-2 px-5 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300"
+                      >
+                        {({ loading }) =>
+                          loading ? "Generating PDF..." : (
+                            <>
+                              <Download className="w-5 h-5" />
+                            </>
+                          )
+                        }
+                      </PDFDownloadLink>
+                    </div>
                   </div>
-
-                  {/* Download Button */}
-                  {/* <a
-                  href={medicine.download}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3 py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition-all text-sm"
-                >
-                  <Download />
-                </a> */}
-                </div>
+                </button>
               ))}
             </div>
+
           ) : (
             <div className="text-center">You have not scanned anything yet</div>
           )}
