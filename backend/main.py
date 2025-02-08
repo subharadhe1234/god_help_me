@@ -22,7 +22,7 @@ Session = initialize_db()
 session = Session()
 
 # get medicine name from image
-@app.route('/get_medicine_names', methods=['POST'])
+@app.route('/get_medicine_names', methods=['POST','GET'])
 def main():
     """
     Handles image upload, saves the image, and extracts text using Azure Document AI.
@@ -31,6 +31,9 @@ def main():
     print("✅ main.py calling successfully ")
 
     # Ensure that the request method is POST
+    if request.method == 'GET':
+        return jsonify({'message': 'radhe radhe'}), 200
+
     if request.method == "POST":
         # Check if the request contains an image file
         if "image" not in request.files:

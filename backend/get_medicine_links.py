@@ -74,11 +74,10 @@ def get_medicine_name_links(med):
             })
 
             # Limit results to 6
-            if i == 5:
-                break
-
+            # if iseak
+        print(medicines)
         # Sort medicines by price (ascending)
-        medicines = sorted(medicines, key=lambda x: x["price"])
+        # mediciness = sorted(medicines, key=lambda x: x["price"])
 
         # Ensure the output directory exists
         output_dir = "output"
@@ -98,5 +97,6 @@ def get_medicine_name_links(med):
     finally:
         # Quit WebDriver to free up resources
         driver.quit()
+        time.sleep(4)
 
     return medicines
