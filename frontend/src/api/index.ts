@@ -128,4 +128,18 @@ async function get_history(token: string){
   }
 }
 
-export {get_medicine_names, get_medicine_links, get_location, get_history}
+async function send_number(num: string){
+  try{
+    const formData = new FormData()
+    formData.append("num", num);
+    formData.append("msg", "Don't forget to take your medicines and get well soon 😊");
+    const response = await fetch(`${SERVER_URL}/send_msg`);
+    if(response.status !== 200){
+      throw new Error("Failed to send message!");
+    }
+  }catch(err){
+    throw err;
+  }
+}
+
+export {get_medicine_names, get_medicine_links, get_location, get_history, send_number}
