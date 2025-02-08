@@ -1,8 +1,14 @@
 import React from "react";
-import { Document, Page, Text, View, StyleSheet, Link } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Link,
+} from "@react-pdf/renderer";
 import { styles } from "./styles";
 // Define styles
-
 
 const PrescriptionPDF = ({ data }: { data: any }) => (
   <Document>
@@ -12,7 +18,9 @@ const PrescriptionPDF = ({ data }: { data: any }) => (
       </View>
 
       <View style={styles.section}>
-        <Text style={styles.text}>General Instructions: {data.general_instructions}</Text>
+        <Text style={styles.text}>
+          General Instructions: {data.general_instructions}
+        </Text>
       </View>
 
       {/* Loop through Medicines */}
@@ -22,7 +30,9 @@ const PrescriptionPDF = ({ data }: { data: any }) => (
           <Text style={styles.text}>Dosage: {medicine.dosage}</Text>
           <Text style={styles.text}>Frequency: {medicine.frequency}</Text>
           <Text style={styles.text}>Route: {medicine.route}</Text>
-          <Text style={styles.text}>Instructions: {medicine.special_instructions}</Text>
+          <Text style={styles.text}>
+            Instructions: {medicine.special_instructions}
+          </Text>
 
           {/* Websites Section */}
           {medicine.websites.map((website: any, idx: number) => (

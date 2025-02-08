@@ -1,17 +1,31 @@
 {
   "medicines": [
     {
-      "name": "Paracetamol",
-      "dosage": "500 mg",
-      "frequency": "Daily 2",
-      "special_instructions": "Take after meal"
+      "name": "Betaloc",
+      "dosage": "100 mg",
+      "frequency": "1 tab BID",
+      "route": "oral",
+      "special_instructions": "O Stoel"
     },
     {
-      "name": "Arden",
-      "dosage": "650 mg",
-      "frequency": "Daily 2",
-      "special_instructions": "Take after med"
+      "name": "Dorzolamidum",
+      "dosage": "10 mg",
+      "frequency": "1 tab BID",
+      "route": "oral"
+    },
+    {
+      "name": "Cimetidine",
+      "dosage": "50 mg",
+      "frequency": "2 tabs TID",
+      "route": "oral"
+    },
+    {
+      "name": "Oxprelol",
+      "dosage": "50 mg",
+      "frequency": "1 tab QD",
+      "route": "oral",
+      "special_instructions": "Adobe Stor"
     }
   ],
-  "general_instructions": "Don't use cold water much and keep distance from others."
+  "general_instructions": "None specified."
 }
