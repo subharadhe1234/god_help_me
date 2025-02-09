@@ -73,14 +73,13 @@ def main():
             data = extrect_text(file_bytes)
             print("✅ extrected text found")
 
-
             # print(data)
             try:
-                
+
                 for i in data["medicines"]:
                     # print(i)
-                    
-                        i["websites"] = []
+
+                    i["websites"] = []
             except:
                 data["medicines"] = []
 
@@ -89,24 +88,21 @@ def main():
                 print("✅ Number found")
                 # Prompt for AI processing
                 prompt = f"extrect the time imformation from the following json data when we have to use this meditnine time when wehen we have to use this medicine ex: 8:00 am 12:00 pm 9:00 pm if any person day start ai 8:00 so say wich time we have to take meditine and you ect best of the give data json outout no additional value:\n{data}"
-                num=str(num)
+                num = str(num)
                 # Get AI response
                 msg = AI_FILTER(prompt)
                 print("✅ AI response found")
-                msg=str(msg)
+                msg = str(msg)
                 # msg="radhe radhe"
-                sendMsg(msg=msg,to_num=num)
+                sendMsg(msg=msg, to_num=num)
                 print(f"✅ sms successfully sent in {num}")
-
-
-
 
             if "token" in request.form:
                 jwt_token = request.form["token"]
                 trans_id = str(uuid.uuid4())
                 print("✅ Token found")
                 store_data(session=session, transaction_id=trans_id,
-                        jwt_token=jwt_token, site_content=data, image_path=image_filename)
+                           jwt_token=jwt_token, site_content=data, image_path=image_filename)
                 print("✅ data successfully stored in database")
 
             return jsonify({
@@ -177,6 +173,7 @@ def get_location():
 # send msg
 @app.route('/send_msg', methods=["POST"])
 def send_msg():
+    print(request.form)
     if ("msg" in request.form) and ("num" in request.form):
 
         msg = str(request.form["msg"])
@@ -194,7 +191,7 @@ def generic_name_search():
         if "name" in request.form:
             name = str(request.form["name"])
             # Call function to search for generic name
-            results=get_medicine_data(medicine_name=name)
+            results = get_medicine_data(medicine_name=name)
             return jsonify({"results": results}), 200
         else:
             return jsonify({"error": "No name data provided"}), 400
@@ -202,14 +199,19 @@ def generic_name_search():
         return jsonify({"error": str(e)}), 500
 
 # a chat with ai
-@app.route('/ai_chat', methods=['POST'])
+
+
+@app.route('/chat_ai', methods=['POST'])
 def ai_chat():
+    # return "radhe radhe"
     try:
         data = request.form  # Ensure JSON input is read properly
-        if not data or "text" not in data:
-            return jsonify({"error": "No text data provided"}), 400
+        print(data)
+        # if not data or "text" not in data:
+        #     return jsonify({"error": "No text data provided"}), 400
 
         user_text = data["text"]
+        print(user_text)
 
         # Load medicine_name.json as a string
         with open('output/medicine_name.json', 'r') as f:
@@ -224,9 +226,6 @@ def ai_chat():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-    
-
 
 
 if __name__ == '__main__':
