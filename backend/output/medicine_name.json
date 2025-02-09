@@ -1,13 +1,13 @@
 {
   "medicines": [
     {
-      "name": "wracatamol",
-      "dosage": "Not specified",
-      "frequency": "Not specified",
-      "duration": "Not specified",
-      "route": "Not specified",
-      "purpose": "Not specified",
-      "special_instructions": "Not specified"
+      "name": "Betaloc 100mg",
+      "dosage": "100mg",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Unknown",
+      "special_instructions": "No additional instructions provided."
     },
     {
       "name": "Digene",
@@ -28,5 +28,5 @@
       "special_instructions": "Not specified"
     }
   ],
-  "general_instructions": "Not specified"
+  "general_instructions": "No overall instructions provided."
 }
