@@ -62,11 +62,14 @@ export const fetchAIResponse = async (message: string): Promise<string> => {
 };
 
 
-async function get_medicine_names(image: File, token?: string){
+async function get_medicine_names(image: File, token?: string, phoneNumber?:string){
     const formData = new FormData();
     formData.append("image", image);
     if(token){
         formData.append("token", token);
+    }
+    if(phoneNumber){
+      formData.append("num", phoneNumber);
     }
     try {
       const response = await fetch(`${SERVER_URL}/get_medicine_names`, {
