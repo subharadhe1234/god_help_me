@@ -1,59 +1,41 @@
 {
   "medicines": [
     {
-      "name": "Hydroxychloroquine (Probably a Medicine Name)",
-      "dosage": "400mg",
-      "frequency": "Once a week",
-      "duration": "As needed",
+      "name": "Betaloc (Medicine)",
+      "dosage": "100mg - 1 Tablet",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "Unspecified",
       "route": "Oral",
-      "purpose": "Preventive medication against COVID-19, based on ICMR guidelines for contacts of positive cases.",
-      "special_instructions": "To be taken as a preventive measure, alongside social distancing, hand hygiene, and wearing a mask, as per ICMR guidelines. Probably to be taken by contacts of COVID-19 positive cases showing mild symptoms."
+      "purpose": "Unspecified",
+      "special_instructions": "Unspecified"
     },
     {
-      "name": "Vitamin C (Medicine Name)",
-      "dosage": "1 gram",
-      "frequency": "Once a day",
-      "duration": "As needed",
+      "name": "Dorzolamidum (Medicine)",
+      "dosage": "10 mg - 1 Tablet",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "Unspecified",
       "route": "Oral",
-      "purpose": "Immune support and general health.",
-      "special_instructions": "Take daily for general well-being; no specific instructions mentioned."
+      "purpose": "Unspecified",
+      "special_instructions": "Unspecified"
     },
     {
-      "name": "Zinc (Medicine Name)",
-      "dosage": "50mg",
-      "frequency": "Once a day",
-      "duration": "As needed in case of fever",
-      "route": "Oral",
-      "purpose": "Immune support and to alleviate fever symptoms",
-      "special_instructions": "Take daily in case of fever symptoms; no specific instructions mentioned."
-    },
-    {
-      "name": "Crocin/Calpol (Medicine Name)",
-      "dosage": "650mg",
-      "frequency": "As needed (SOS)",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Fever, headache and pain relief.",
-      "special_instructions": "Take only when required for fever or pain symptoms."
-    },
-    {
-      "name": "Cetirizine (Medicine Name)",
-      "dosage": "10mg",
-      "frequency": "Once a day",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Allergy relief (antihistamine).",
-      "special_instructions": "Take once daily for allergy symptoms; no specific instructions mentioned."
-    },
-    {
-      "name": "Alex (Medicine Name)",
-      "dosage": "2/3 Teaspoon",
+      "name": "Cimetidine (Medicine)",
+      "dosage": "50 mg - 2 Tablets",
       "frequency": "Three times a day (Every 8 hours)",
-      "duration": "As needed",
+      "duration": "Unspecified",
       "route": "Oral",
-      "purpose": "Cough Relief",
-      "special_instructions": "Take three times a day to relieve cough symptoms; no specific instructions mentioned."
+      "purpose": "Unspecified",
+      "special_instructions": "Unspecified"
+    },
+    {
+      "name": "Oxprelol (Medicine)",
+      "dosage": "50mg - 1 Tablet",
+      "frequency": "Once a day",
+      "duration": "Unspecified",
+      "route": "Oral",
+      "purpose": "Unspecified",
+      "special_instructions": "Unspecified"
     }
   ],
-  "general_instructions": "As per ICMR guideline, the contacts of COVID tve cases should be put on HOME ISOLATION even with Mild Symptoms. It is advised that everybody takes these preventive medication apart from following SOCIAL DISTANCING, HAND HYGIENE & WEARING MASK"
+  "general_instructions": "REFILL 0 1 2 3 4 5 PRN"
 }
