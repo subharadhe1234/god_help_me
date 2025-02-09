@@ -198,17 +198,14 @@ def generic_name_search():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# a chat with ai
 
-
-@app.route('/chat_ai', methods=['POST'])
+@app.route('/ai_chat', methods=['POST'])
 def ai_chat():
     # return "radhe radhe"
     try:
-        data = request.form  # Ensure JSON input is read properly
-        print(data)
-        # if not data or "text" not in data:
-        #     return jsonify({"error": "No text data provided"}), 400
+        data = request.form  # Use JSON input instead of form data
+        if not data or "text" not in data:
+            return jsonify({"error": "No text data provided"}), 400
 
         user_text = data["text"]
         print(user_text)
@@ -216,12 +213,10 @@ def ai_chat():
         # Load medicine_name.json as a string
         with open('output/medicine_name.json', 'r') as f:
             med_name = f.read()  # Read as plain text
-            # print(med_name)
 
-        # Call AI response function (assuming it returns a string)
+        # Call AI response function
         response = ai_response(medical_data=med_name, query=user_text)
 
-        # Wrap response in JSON format
         return jsonify({"response": response}), 200
 
     except Exception as e:
