@@ -1,0 +1,59 @@
+{
+  "medicines": [
+    {
+      "name": "Hydroxychloroquine (possible medicine name)",
+      "dosage": "400mg",
+      "frequency": "Once a week",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Preventive medication as per ICMR guideline for contacts of COVID tve cases",
+      "special_instructions": "Take as directed by physician, alongside social distancing, hand hygiene and wearing a mask."
+    },
+    {
+      "name": "Vitamin C (medicine name)",
+      "dosage": "One gram",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Preventive medication as per ICMR guideline for contacts of COVID tve cases",
+      "special_instructions": "Take as directed by physician, alongside social distancing, hand hygiene and wearing a mask."
+    },
+    {
+      "name": "Zinc (Zinc is possible medicine name)",
+      "dosage": "50mg",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Preventive medication as per ICMR guideline for contacts of COVID tve cases",
+      "special_instructions": "Take as directed by physician, alongside social distancing, hand hygiene and wearing a mask."
+    },
+    {
+      "name": "Crocin/Calpol (medicine name)",
+      "dosage": "650 mg",
+      "frequency": "SOS (when necessary)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Fever",
+      "special_instructions": "Take only in case of fever."
+    },
+    {
+      "name": "Cetirizine (medicine name)",
+      "dosage": "10 mg",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Allergy relief",
+      "special_instructions": "Take only in case of throat pain & cough."
+    },
+    {
+      "name": "Alex (medicine name)",
+      "dosage": "2/3 Teaspoon",
+      "frequency": "Three times a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Cough relief",
+      "special_instructions": "Take only in case of throat pain & cough."
+    }
+  ],
+  "general_instructions": "As per ICMR guideline, the contacts of COVID tve cases should be put on HOME ISOLATION even with Mild Symptoms. It is advised that everybody takes these preventive medication apart from following SOCIAL DISTANCING, HAND HYGIENE & WEARING MASK"
+}
