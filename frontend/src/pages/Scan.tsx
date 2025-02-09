@@ -80,15 +80,16 @@ function Scan() {
     const file = new File([blob], "prescription.png", { type: "image/png" });
     let data;
     try {
-      if (isLoggedIn) data = await get_medicine_names(file, userDetails?.token);
-      else if (phoneNumber !== "" && e.target.textContent === "Ok")
-        data = await get_medicine_names(file, phoneNumber);
-      else if (
-        phoneNumber !== "" &&
-        e.target.textContent === "Ok" &&
-        isLoggedIn
-      )
+      if (isLoggedIn && phoneNumber !== "" && e.target.textContent === "Ok")
         data = await get_medicine_names(file, userDetails?.token, phoneNumber);
+      else if (isLoggedIn && phoneNumber === "")
+        data = await get_medicine_names(file, userDetails?.token);
+      else if (
+        !isLoggedIn &&
+        phoneNumber !== "" &&
+        e.target.textContent === "Ok"
+      )
+        data = await get_medicine_names(file, phoneNumber);
       else data = await get_medicine_names(file);
       console.log("Response:", data);
       setNavbar(true);
