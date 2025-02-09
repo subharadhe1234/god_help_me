@@ -10,6 +10,7 @@
       "special_instructions": "Not specified (special_instructions)"
     },
     {
+<<<<<<< HEAD
       "name": "Dorzolamidum (medicine_name)",
       "dosage": "10 mg - 1 tablet (dosage_details)",
       "frequency": "Twice a day (Every 12 hours) (detailed schedule)",
@@ -17,6 +18,15 @@
       "route": "Oral (route)",
       "purpose": "Not specified (purpose)",
       "special_instructions": "Not specified (special_instructions)"
+=======
+      "name": "Vitamin C (Medicine Name)",
+      "dosage": "1 gram",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Immune support and general health.",
+      "special_instructions": "Take daily for general well-being; no specific instructions mentioned."
+>>>>>>> b1e713f9e568c613a5877d7d61d854597660da26
     },
     {
       "name": "Cimetidine (medicine_name)",
@@ -28,6 +38,7 @@
       "special_instructions": "Not specified (special_instructions)"
     },
     {
+<<<<<<< HEAD
       "name": "Oxprelol (medicine_name)",
       "dosage": "50mg - 1 tablet (dosage_details)",
       "frequency": "Once a day (detailed schedule)",
@@ -35,6 +46,33 @@
       "route": "Oral (route)",
       "purpose": "Not specified (purpose)",
       "special_instructions": "Not specified (special_instructions)"
+=======
+      "name": "Crocin/Calpol (Medicine Name)",
+      "dosage": "650mg",
+      "frequency": "As needed (SOS)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Fever, headache and pain relief.",
+      "special_instructions": "Take only when required for fever or pain symptoms."
+    },
+    {
+      "name": "Cetirizine (Medicine Name)",
+      "dosage": "10mg",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Allergy relief (antihistamine).",
+      "special_instructions": "Take once daily for allergy symptoms; no specific instructions mentioned."
+    },
+    {
+      "name": "Alex (Medicine Name)",
+      "dosage": "2/3 Teaspoon",
+      "frequency": "Three times a day (Every 8 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Cough Relief",
+      "special_instructions": "Take three times a day to relieve cough symptoms; no specific instructions mentioned."
+>>>>>>> b1e713f9e568c613a5877d7d61d854597660da26
     }
   ],
   "general_instructions": "Refill as needed (PRN) (general_instructions)"
