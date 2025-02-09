@@ -204,7 +204,7 @@ def generic_name_search():
 @app.route('/ai_chat', methods=['POST'])
 def ai_chat():
     try:
-        data = request.get_json()  # Ensure JSON input is read properly
+        data = request.form  # Ensure JSON input is read properly
         if not data or "text" not in data:
             return jsonify({"error": "No text data provided"}), 400
 
@@ -213,6 +213,7 @@ def ai_chat():
         # Load medicine_name.json as a string
         with open('output/medicine_name.json', 'r') as f:
             med_name = f.read()  # Read as plain text
+            # print(med_name)
 
         # Call AI response function (assuming it returns a string)
         response = ai_response(medical_data=med_name, query=user_text)
