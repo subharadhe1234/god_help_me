@@ -89,7 +89,7 @@ function Scan() {
         isLoggedIn
       )
         data = await get_medicine_names(file, userDetails?.token, phoneNumber);
-      else await get_medicine_names(file);
+      else data = await get_medicine_names(file);
       console.log("Response:", data);
       setNavbar(true);
       setImage("");
