@@ -150,7 +150,10 @@ async function send_number(num: string){
     const formData = new FormData()
     formData.append("num", num);
     formData.append("msg", "Don't forget to take your medicines and get well soon 😊");
-    const response = await fetch(`${SERVER_URL}/send_msg`);
+    const response = await fetch(`${SERVER_URL}/send_msg`,{
+      method: "POST",
+      body: formData
+    });
     if(response.status !== 200){
       throw new Error("Failed to send message!");
     }

@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 // API
-import { get_medicine_names } from "../api";
+import { get_medicine_names, send_number } from "../api";
 
 // const demoData = {
 //   data: {
@@ -67,10 +67,10 @@ function Scan() {
   };
 
   const handleSubmit = async (e: any) => {
-    // if (e.target.textContent === "Ok" && phoneNumber !== "") {
-    //   console.log("Submitting phone number: ", phoneNumber);
-    //   await send_number(phoneNumber);
-    // }
+    if (e.target.textContent === "Ok" && phoneNumber !== "") {
+      console.log("Submitting phone number: ", phoneNumber);
+      await send_number(phoneNumber);
+    }
     console.log("Submitting Image");
     console.log(image);
     setIsLoading(true);

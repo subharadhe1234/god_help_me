@@ -1,0 +1,41 @@
+{
+  "medicines": [
+    {
+      "name": "Betaloc (Medicine Name Probability: High)",
+      "dosage": "100mg - 1 Tablet",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
+    },
+    {
+      "name": "Dorzolamidum (Medicine Name Probability: High)",
+      "dosage": "10 mg - 1 Tablet",
+      "frequency": "Twice a day (Every 12 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
+    },
+    {
+      "name": "Cimetidine (Medicine Name Probability: High)",
+      "dosage": "50 mg - 2 Tablets",
+      "frequency": "Three times a day (Every 8 hours)",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
+    },
+    {
+      "name": "Oxprelol (Medicine Name Probability: High)",
+      "dosage": "50mg - 1 Tablet",
+      "frequency": "Once a day",
+      "duration": "As needed",
+      "route": "Oral",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
+    }
+  ],
+  "general_instructions": "Not specified"
+}
