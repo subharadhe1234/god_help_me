@@ -84,8 +84,8 @@ def main():
             except:
                 data["medicines"] = []
 
-            if "number" in request.form:
-                num = request.form["number"]
+            if "num" in request.form:
+                num = request.form["num"]
                 print("✅ Number found")
                 # Prompt for AI processing
                 prompt = f"extrect the time imformation from the following json data when we have to use this meditnine time when wehen we have to use this medicine ex: 8:00 am 12:00 pm 9:00 pm if any person day start ai 8:00 so say wich time we have to take meditine and you ect best of the give data json outout no additional value:\n{data}"
@@ -178,6 +178,7 @@ def get_location():
 @app.route('/send_msg', methods=["POST"])
 def send_msg():
     if ("msg" in request.form) and ("num" in request.form):
+
         msg = str(request.form["msg"])
         num = str(request.form["num"])
         sendMsg(msg=msg, to_num=num)
