@@ -180,7 +180,7 @@ function Scan() {
                       />
                     )}
                     <input
-                      type="number"
+                      type="text"
                       placeholder="Your phone number"
                       className="border-2 border-gray-400 px-4 py-2 w-full rounded"
                       value={phoneNumber}
