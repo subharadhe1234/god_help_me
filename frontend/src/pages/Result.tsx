@@ -5,8 +5,6 @@ import { useState, useEffect } from "react";
 import { get_medicine_links, get_location, fetchMedicineDetails } from "../api";
 import { InfinitySpin } from "react-loader-spinner";
 import { MapPin, MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
-import { log } from "console";
 import GenericName from "../components/GenericName";
 function toSentenceCase(str: string) {
   if (!str) return ""; // Handle empty strings
@@ -182,7 +180,6 @@ const demoLocationdata = {
 const Result = () => {
   const [errorMessage, setErrorMessage] = useState<{ [key: string]: string }>({});
   const [loadingId, setLoadingId] = useState<string | null>(null);
-  const [loading, setLoading] = useState(null);
   const [isLoadingLinks, setIsLoadingLinks] = useState(false);
   const [isLoadingLocations, setIsLoadingLocations] = useState(false);
   const [linkErrorMessage, setLinkErrorMessage] = useState("");
@@ -190,6 +187,8 @@ const Result = () => {
   const [nearbyLocations, setNearbyLocations] = useState([]);
   const location = useLocation();
   const [usageDropdown, setUsageDropdown] = useState(false);
+  const [showGenericName, setShowGenericName] = useState(false);
+  const [genericMedicineName, setGenericMedicineName] = useState("");
 
   const [medicineData, setMedicineData] = useState<any>({});
   const { data } = location.state || {};
@@ -309,6 +308,11 @@ const Result = () => {
     }
   };
 
+  const handleGenericNameSearch = (e: any) => {
+    setShowGenericName(true);
+    setGenericMedicineName(e.target.name);
+  }
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -332,6 +336,7 @@ const Result = () => {
         There was a problem, please try again!
       </div>
     );
+  else if(showGenericName) return <GenericName medicineName={genericMedicineName} setShowGenericName={setShowGenericName} />
   return (
     <div className="p-6 bg-gray-100 min-h-screen flex flex-col gap-6">
       <span className="bg-white p-4 rounded-xl shadow-md text-gray-800 text-center font-bold text-3xl">
@@ -456,9 +461,7 @@ const Result = () => {
                 {errorMessage[medicine.name]}
               </div>
             )}
-
-
-            <GenericName />
+            <button className="" name={medicine.name} onClick={handleGenericNameSearch}>Generic name search</button>
           </div>
         ))}
       </div>

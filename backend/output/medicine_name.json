@@ -1,63 +1,32 @@
 {
   "medicines": [
     {
-<<<<<<< HEAD
-      "name": "Betaloc 100mg",
-      "dosage": "100mg",
-      "frequency": "Twice a day (Every 12 hours)",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Unknown",
-      "special_instructions": "No additional instructions provided."
+      "name": "wracatamol",
+      "dosage": "Not specified",
+      "frequency": "Not specified",
+      "duration": "Not specified",
+      "route": "Not specified",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
     },
     {
-      "name": "Dorzolamidum 10 mg",
-      "dosage": "10 mg",
-      "frequency": "Twice a day (Every 12 hours)",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Unknown",
-      "special_instructions": "No additional instructions provided."
+      "name": "Digene",
+      "dosage": "Not specified",
+      "frequency": "Not specified",
+      "duration": "Not specified",
+      "route": "Not specified",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
     },
     {
-      "name": "Cimetidine 50 mg",
-      "dosage": "50 mg",
-      "frequency": "Three times a day (Every 8 hours)",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Unknown",
-      "special_instructions": "No additional instructions provided."
-    },
-    {
-      "name": "Oxprelol 50mg",
-      "dosage": "50 mg",
-      "frequency": "Once a day",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Unknown",
-      "special_instructions": "No additional instructions provided."
+      "name": "levothyroxine",
+      "dosage": "Not specified",
+      "frequency": "Not specified",
+      "duration": "Not specified",
+      "route": "Not specified",
+      "purpose": "Not specified",
+      "special_instructions": "Not specified"
     }
   ],
-  "general_instructions": "No overall instructions provided."
-=======
-      "name": "Paracetamol",
-      "dosage": "500 mg",
-      "frequency": "Twice a day",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Pain Relief, Fever",
-      "special_instructions": "Take after meal"
-    },
-    {
-      "name": "Arden",
-      "dosage": "650 mg",
-      "frequency": "Twice a day",
-      "duration": "As needed",
-      "route": "Oral",
-      "purpose": "Unknown",
-      "special_instructions": "Take after med"
-    }
-  ],
-  "general_instructions": "Don't use cold water much and keep distance from others."
->>>>>>> 752d194d12955b6c86ab600f98b643ad62b07e5c
+  "general_instructions": "Not specified"
 }
