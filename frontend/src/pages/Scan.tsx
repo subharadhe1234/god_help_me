@@ -76,9 +76,10 @@ function Scan() {
     const file = new File([blob], "prescription.png", { type: "image/png" });
     let data;
     try {
-      if (isLoggedIn && phoneNumber !== "" && e.target.textContent === "Ok")
-        data = await get_medicine_names(file, userDetails?.token, phoneNumber);
-      else if (isLoggedIn && phoneNumber === "")
+      if (isLoggedIn && phoneNumber.length >= 10 && e.target.textContent === "Ok"){
+        console.log("Submitting phone number: ", phoneNumber);
+        data = await get_medicine_names(file, userDetails?.token, phoneNumber);}
+      else if (isLoggedIn)
         data = await get_medicine_names(file, userDetails?.token);
       else if (
         !isLoggedIn &&
