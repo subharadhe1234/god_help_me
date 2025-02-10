@@ -77,21 +77,24 @@ function Scan() {
     let data;
     try {
       if (isLoggedIn && phoneNumber.length >= 10 && e.target.textContent === "Ok"){
-        console.log("Submitting phone number: ", phoneNumber);
+        console.log("Submitting phone number  ", phoneNumber," image and not sending token");
         data = await get_medicine_names(file, userDetails?.token, phoneNumber);}
-      else if (isLoggedIn)
-        data = await get_medicine_names(file, userDetails?.token);
+      else if (isLoggedIn){
+        console.log("Submitting Image and sending token");
+        data = await get_medicine_names(file, userDetails?.token);}
       else if (
         !isLoggedIn &&
         phoneNumber.length >= 10 &&
         e.target.textContent === "Ok"
       )
         {
-          console.log("Submitting phone number: ", phoneNumber);
+          console.log("Submitting phone number  not  send token ", phoneNumber);
           data = await get_medicine_names( file,"", phoneNumber);
           console.log("radhe radhde");
         }
-      else data = await get_medicine_names(file);
+      else {
+        console.log("Submitting Image not sending token");
+        data = await get_medicine_names(file);}
       console.log("Response:", data);
       // if (e.target.textContent === "Ok" && phoneNumber !== "") {
       //   console.log("Submitting phone number: ", phoneNumber);

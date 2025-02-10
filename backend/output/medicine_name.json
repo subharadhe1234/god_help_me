@@ -1,68 +1,68 @@
 {
   "medicines": [
     {
-      "name": "Nicardia R (Likely Medicine Name)",
-      "dosage": "20 til (Dosage details unclear, 'til' needs clarification. Assuming 20mg if 'til' is a typo for mg)",
-      "frequency": "Unclear.  Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Oral (Assuming oral administration for most tablets)",
-      "purpose": "Likely for hypertension (based on 'Nicardia', requires confirmation)",
-      "special_instructions": "Consult a healthcare professional for specific instructions."
+      "name": "Nicardia R (Medicine Name Probability: High)",
+      "dosage": "20 (Dosage Details: Likely mg, though unit is not specified)",
+      "frequency": "Unspecified (Frequency details: til - May be abbreviation for 'till', which doesn't indicate frequency)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Oral (Route details: Generally assumed for tablets unless specified otherwise)",
+      "purpose": "Hypertension (Purpose details: Nicardia is commonly used to treat hypertension)",
+      "special_instructions": "Consult physician (Special Instructions: Follow doctor's instructions)"
     },
     {
-      "name": "Jasix (Likely Medicine Name)",
-      "dosage": "40 ks (Dosage details unclear, 'ks' needs clarification. Assuming 40mg if 'ks' is a typo for mg)",
-      "frequency": "Unclear. Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Oral (Assuming oral administration for most tablets)",
-      "purpose": "Unknown. Requires further information to determine the purpose.",
-      "special_instructions": "Consult a healthcare professional for specific instructions."
+      "name": "Jasix (Medicine Name Probability: High)",
+      "dosage": "40 (Dosage Details: Likely mg, though unit is not specified)",
+      "frequency": "Unspecified (Frequency details: ks - Unclear abbreviation, needs clarification)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Oral (Route details: Generally assumed for tablets unless specified otherwise)",
+      "purpose": "Unspecified (Purpose details: Further details are needed)",
+      "special_instructions": "Consult physician (Special Instructions: Follow doctor's instructions)"
     },
     {
-      "name": "Rantac (Likely Medicine Name)",
-      "dosage": "150 BA (Dosage details unclear, 'BA' needs clarification. Assuming 150mg if 'BA' is a typo for mg)",
-      "frequency": "Unclear. Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Oral (Assuming oral administration for most tablets)",
-      "purpose": "Likely for acid reflux or heartburn (based on 'Rantac', requires confirmation)",
-      "special_instructions": "Consult a healthcare professional for specific instructions."
+      "name": "Rantac (Medicine Name Probability: High)",
+      "dosage": "150 (Dosage Details: Likely mg, though unit is not specified)",
+      "frequency": "Unspecified (Frequency details: BA - Unclear abbreviation, needs clarification)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Oral (Route details: Generally assumed for tablets unless specified otherwise)",
+      "purpose": "Acid reflux/GERD (Purpose details: Rantac (ranitidine) is an H2 receptor antagonist used to reduce stomach acid production)",
+      "special_instructions": "Take as directed by your doctor (Special Instructions: Follow doctor's instructions)"
     },
     {
-      "name": "Emesel (Likely Medicine Name)",
-      "dosage": "Ave #8 (Dosage details unclear, 'Ave #8' needs clarification. Dosage unknown.)",
-      "frequency": "Unclear. Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Oral (Assuming oral administration for most tablets)",
-      "purpose": "Likely for nausea or vomiting (based on 'Emesel', requires confirmation)",
-      "special_instructions": "Consult a healthcare professional for specific instructions."
+      "name": "Emesel (Medicine Name Probability: Medium)",
+      "dosage": "Unspecified (Dosage Details: Ave #8 indicates administration details related to Avenue, so not dosage.)",
+      "frequency": "Unspecified (Frequency details: Depends on dosage)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Unspecified (Route details: Need more information)",
+      "purpose": "Unspecified (Purpose details: Usually to stop nausea)",
+      "special_instructions": "Consult physician (Special Instructions: Follow doctor's instructions)"
     },
     {
-      "name": "Aulin (Likely Medicine Name)",
-      "dosage": "100 (Assuming 100mg, requires confirmation)",
-      "frequency": "Unclear. Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Oral (Assuming oral administration for most tablets)",
-      "purpose": "Likely for pain relief or inflammation (based on 'Aulin', requires confirmation.  Aulin is a brand name for Nimesulide, which has restrictions in some countries.)",
-      "special_instructions": "Consult a healthcare professional for specific instructions, especially regarding potential side effects or contraindications."
+      "name": "Aulin (Medicine Name Probability: High)",
+      "dosage": "100 (Dosage Details: Likely mg, though unit is not specified)",
+      "frequency": "Unspecified (Frequency details: Needs more information)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Oral (Route details: Generally assumed for tablets unless specified otherwise)",
+      "purpose": "Pain relief and anti-inflammatory (Purpose details: Aulin (nimesulide) is a nonsteroidal anti-inflammatory drug (NSAID))",
+      "special_instructions": "Consult physician (Special Instructions: Follow doctor's instructions)"
     },
     {
-      "name": "Noloin (Likely Medicine Name)",
-      "dosage": "IBA (Dosage details unclear, 'IBA' needs clarification. Dosage unknown.)",
-      "frequency": "Unclear. Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Oral (Assuming oral administration for most tablets)",
-      "purpose": "Unknown. Requires further information to determine the purpose.",
-      "special_instructions": "Consult a healthcare professional for specific instructions."
+      "name": "Noloin (Medicine Name Probability: Medium)",
+      "dosage": "Unspecified (Dosage Details: Need More Information)",
+      "frequency": "Unspecified (Frequency details: IBA. is unclear, needs clarification)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Unspecified (Route details: Need more information)",
+      "purpose": "Unspecified (Purpose details: Need More Information)",
+      "special_instructions": "Consult physician (Special Instructions: Follow doctor's instructions)"
     },
     {
-      "name": "Douban (Likely Medicine Name)",
-      "dosage": "Lbs (Dosage details unclear, 'Lbs' needs clarification. Dosage unknown.)",
-      "frequency": "Unclear. Further information needed.",
-      "duration": "Unclear. Further information needed.",
-      "route": "Unknown",
-      "purpose": "Unknown. Requires further information to determine the purpose.",
-      "special_instructions": "Consult a healthcare professional for specific instructions."
+      "name": "Douban (Medicine Name Probability: Low)",
+      "dosage": "Unspecified (Dosage Details: Lbs is weight, but not dosage)",
+      "frequency": "Unspecified (Frequency details: Needs more information)",
+      "duration": "Unspecified (Duration details: Need more information)",
+      "route": "Unspecified (Route details: Need more information)",
+      "purpose": "Unspecified (Purpose details: Further details are needed)",
+      "special_instructions": "Consult physician (Special Instructions: Follow doctor's instructions)"
     }
   ],
-  "general_instructions": "Consult a healthcare professional for detailed instructions on each medication, including dosage, frequency, and potential side effects. Do not self-medicate."
+  "general_instructions": "Follow your doctor's instructions carefully. If any side effects persist or worsen, consult your doctor."
 }
