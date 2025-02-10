@@ -32,7 +32,9 @@ Session = initialize_db()
 session = Session()
 
 # get medicine name from image
-
+@app.route('/')
+def index():
+    return "Hello, World!"
 
 @app.route('/get_medicine_names', methods=['POST', 'GET'])
 def main():
