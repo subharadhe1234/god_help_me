@@ -174,11 +174,21 @@ def get_location():
 @app.route('/send_msg', methods=["POST"])
 def send_msg():
     print(request.form)
-    if ("msg" in request.form) and ("num" in request.form):
+    if"num" in request.form:
 
-        msg = str(request.form["msg"])
         num = str(request.form["num"])
+
+        print("✅ Number found")
+        # Prompt for AI processing
+        prompt = f"extrect the time imformation from the following json data when we have to use this meditnine time when wehen we have to use this medicine ex: 8:00 am 12:00 pm 9:00 pm if any person day start ai 8:00 so say wich time we have to take meditine and you ect best of the give data json outout no additional value:\n{data}"
+        num = str(num)
+        # Get AI response
+        msg = AI_FILTER(prompt)
+        print("✅ AI response found")
+        msg = str(msg)
+        # msg="radhe radhe"
         sendMsg(msg=msg, to_num=num)
+        print(f"✅ sms successfully sent in {num}")
         # send msg to user
         return jsonify({"response": "msg send succesfully"}), 200
     else:
@@ -187,6 +197,7 @@ def send_msg():
 
 @app.route('/generic_name_search', methods=['POST'])
 def generic_name_search():
+
     try:
         if "name" in request.form:
             name = str(request.form["name"])
@@ -199,7 +210,7 @@ def generic_name_search():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/ai_chat', methods=['POST'])
+@app.route('/ai_chat', methods=['POST','OPTIONS'])
 def ai_chat():
     # return "radhe radhe"
     try:
