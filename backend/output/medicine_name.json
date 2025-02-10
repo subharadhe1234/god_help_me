@@ -1,34 +1,68 @@
 {
-  "medicines": [],
-  "investigations": [
+  "medicines": [
     {
-      "name": "Hb",
-      "details": "Hemoglobin blood test."
+      "name": "Nicardia R (Likely Medicine Name)",
+      "dosage": "20 til (Dosage details unclear, 'til' needs clarification. Assuming 20mg if 'til' is a typo for mg)",
+      "frequency": "Unclear.  Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Oral (Assuming oral administration for most tablets)",
+      "purpose": "Likely for hypertension (based on 'Nicardia', requires confirmation)",
+      "special_instructions": "Consult a healthcare professional for specific instructions."
     },
     {
-      "name": "TSH",
-      "details": "Thyroid Stimulating Hormone blood test."
+      "name": "Jasix (Likely Medicine Name)",
+      "dosage": "40 ks (Dosage details unclear, 'ks' needs clarification. Assuming 40mg if 'ks' is a typo for mg)",
+      "frequency": "Unclear. Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Oral (Assuming oral administration for most tablets)",
+      "purpose": "Unknown. Requires further information to determine the purpose.",
+      "special_instructions": "Consult a healthcare professional for specific instructions."
     },
     {
-      "name": "Uric Acid",
-      "details": "Uric acid blood test."
+      "name": "Rantac (Likely Medicine Name)",
+      "dosage": "150 BA (Dosage details unclear, 'BA' needs clarification. Assuming 150mg if 'BA' is a typo for mg)",
+      "frequency": "Unclear. Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Oral (Assuming oral administration for most tablets)",
+      "purpose": "Likely for acid reflux or heartburn (based on 'Rantac', requires confirmation)",
+      "special_instructions": "Consult a healthcare professional for specific instructions."
     },
     {
-      "name": "ROS HIV",
-      "details": "Review of Systems for HIV (Human Immunodeficiency Virus)."
+      "name": "Emesel (Likely Medicine Name)",
+      "dosage": "Ave #8 (Dosage details unclear, 'Ave #8' needs clarification. Dosage unknown.)",
+      "frequency": "Unclear. Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Oral (Assuming oral administration for most tablets)",
+      "purpose": "Likely for nausea or vomiting (based on 'Emesel', requires confirmation)",
+      "special_instructions": "Consult a healthcare professional for specific instructions."
     },
     {
-      "name": "HBsAg",
-      "details": "Hepatitis B surface antigen test."
+      "name": "Aulin (Likely Medicine Name)",
+      "dosage": "100 (Assuming 100mg, requires confirmation)",
+      "frequency": "Unclear. Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Oral (Assuming oral administration for most tablets)",
+      "purpose": "Likely for pain relief or inflammation (based on 'Aulin', requires confirmation.  Aulin is a brand name for Nimesulide, which has restrictions in some countries.)",
+      "special_instructions": "Consult a healthcare professional for specific instructions, especially regarding potential side effects or contraindications."
     },
     {
-      "name": "HCV",
-      "details": "Hepatitis C Virus antibody test."
+      "name": "Noloin (Likely Medicine Name)",
+      "dosage": "IBA (Dosage details unclear, 'IBA' needs clarification. Dosage unknown.)",
+      "frequency": "Unclear. Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Oral (Assuming oral administration for most tablets)",
+      "purpose": "Unknown. Requires further information to determine the purpose.",
+      "special_instructions": "Consult a healthcare professional for specific instructions."
     },
     {
-      "name": "USG Abdomen Pelvis",
-      "details": "Ultrasound of the abdomen and pelvis."
+      "name": "Douban (Likely Medicine Name)",
+      "dosage": "Lbs (Dosage details unclear, 'Lbs' needs clarification. Dosage unknown.)",
+      "frequency": "Unclear. Further information needed.",
+      "duration": "Unclear. Further information needed.",
+      "route": "Unknown",
+      "purpose": "Unknown. Requires further information to determine the purpose.",
+      "special_instructions": "Consult a healthcare professional for specific instructions."
     }
   ],
-  "general_instructions": "No Rest forbed. Kettiavan visit. Damit Problem. Physio."
+  "general_instructions": "Consult a healthcare professional for detailed instructions on each medication, including dosage, frequency, and potential side effects. Do not self-medicate."
 }

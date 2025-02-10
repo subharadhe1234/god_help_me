@@ -82,16 +82,20 @@ function Scan() {
         data = await get_medicine_names(file, userDetails?.token);
       else if (
         !isLoggedIn &&
-        phoneNumber !== "" &&
+        phoneNumber.length >= 10 &&
         e.target.textContent === "Ok"
       )
-        data = await get_medicine_names(file, phoneNumber);
+        {
+          console.log("Submitting phone number: ", phoneNumber);
+          data = await get_medicine_names( file,"", phoneNumber);
+          console.log("radhe radhde");
+        }
       else data = await get_medicine_names(file);
       console.log("Response:", data);
-      if (e.target.textContent === "Ok" && phoneNumber !== "") {
-        console.log("Submitting phone number: ", phoneNumber);
-        await send_number(phoneNumber);
-      }
+      // if (e.target.textContent === "Ok" && phoneNumber !== "") {
+      //   console.log("Submitting phone number: ", phoneNumber);
+      //   await send_number(phoneNumber);
+      // }
       setNavbar(true);
       setImage("");
       setIsLoading(false);

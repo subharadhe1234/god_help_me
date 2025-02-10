@@ -99,11 +99,12 @@ def main():
 
             if "token" in request.form:
                 jwt_token = request.form["token"]
-                trans_id = str(uuid.uuid4())
-                print("✅ Token found")
-                store_data(session=session, transaction_id=trans_id,
-                           jwt_token=jwt_token, site_content=data, image_path=image_filename)
-                print("✅ data successfully stored in database")
+                if jwt_token != "":
+                    trans_id = str(uuid.uuid4())
+                    print("✅ Token found")
+                    store_data(session=session, transaction_id=trans_id,
+                            jwt_token=jwt_token, site_content=data, image_path=image_filename)
+                    print("✅ data successfully stored in database")
 
             return jsonify({
                 "data": data
@@ -173,22 +174,20 @@ def get_location():
 # send msg
 @app.route('/send_msg', methods=["POST"])
 def send_msg():
-    print(request.form)
+    # print(request.form)
     if"num" in request.form:
-
-        num = str(request.form["num"])
-
-        print("✅ Number found")
-        # Prompt for AI processing
-        prompt = f"extrect the time imformation from the following json data when we have to use this meditnine time when wehen we have to use this medicine ex: 8:00 am 12:00 pm 9:00 pm if any person day start ai 8:00 so say wich time we have to take meditine and you ect best of the give data json outout no additional value:\n{data}"
-        num = str(num)
-        # Get AI response
-        msg = AI_FILTER(prompt)
-        print("✅ AI response found")
-        msg = str(msg)
-        # msg="radhe radhe"
-        sendMsg(msg=msg, to_num=num)
-        print(f"✅ sms successfully sent in {num}")
+        # num = str(request.form["num"])
+        # print("✅ Number found")
+        # # Prompt for AI processing
+        # prompt = f"extrect the time imformation from the following json data when we have to use this meditnine time when wehen we have to use this medicine ex: 8:00 am 12:00 pm 9:00 pm if any person day start ai 8:00 so say wich time we have to take meditine and you ect best of the give data json outout no additional value:\n{data}"
+        # num = str(num)
+        # # Get AI response
+        # msg = AI_FILTER(prompt)
+        # print("✅ AI response found")
+        # msg = str(msg)
+        # # msg="radhe radhe"
+        # sendMsg(msg=msg, to_num=num)
+        # print(f"✅ sms successfully sent in {num}")
         # send msg to user
         return jsonify({"response": "msg send succesfully"}), 200
     else:
@@ -210,11 +209,12 @@ def generic_name_search():
         return jsonify({"error": str(e)}), 500
 
 
-@app.route('/ai_chat', methods=['POST','OPTIONS'])
+@app.route('/ai_chat', methods=['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'])
 def ai_chat():
     # return "radhe radhe"
     try:
         data = request.form  # Use JSON input instead of form data
+        print(data)
         if not data or "text" not in data:
             return jsonify({"error": "No text data provided"}), 400
 
